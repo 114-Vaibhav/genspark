@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+//Hi changed for check git on mac
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
