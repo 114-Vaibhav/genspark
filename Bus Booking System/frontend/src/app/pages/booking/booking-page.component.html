@@ -1,0 +1,249 @@
+<div *ngIf="isLoading" class="flex items-center justify-center min-h-screen text-slate-500 bg-slate-50">
+  <div class="animate-pulse flex flex-col items-center">
+    <div class="h-12 w-12 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
+    <p class="mt-4 text-sm tracking-widest uppercase">Loading your journey...</p>
+  </div>
+</div>
+
+<div *ngIf="!isLoading" class="min-h-screen bg-slate-50/50 pt-8 pb-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+    <!-- Hero / Header -->
+    <div
+      class="relative overflow-hidden rounded-[2.5rem] bg-slate-900 text-white shadow-2xl p-8 sm:p-12 border border-slate-800">
+      <div
+        class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-cyan-500 rounded-full blur-[120px] opacity-20 pointer-events-none">
+      </div>
+      <div
+        class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-pink-500 rounded-full blur-[100px] opacity-20 pointer-events-none">
+      </div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.3em] text-cyan-300 font-semibold mb-2">Secure Booking</p>
+          <h1 class="font-serif text-4xl sm:text-5xl font-medium tracking-tight">
+            {{ context?.route?.source }} <span class="text-slate-400 mx-2">&rarr;</span> {{ context?.route?.destination
+            }}
+          </h1>
+          <p class="mt-3 text-slate-300 max-w-2xl text-lg">
+            {{ context?.trip?.journeyDate | date: 'EEEE, MMMM d, y' }} • Bus {{ context?.bus?.busNumber }}
+          </p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/10 text-center min-w-[200px]">
+          <p class="text-sm text-slate-300 uppercase tracking-wider mb-1">Fare Per Seat</p>
+          <p class="text-4xl font-bold text-white">{{ context?.trip?.price | currency: 'INR' }}</p>
+          <p class="text-sm text-cyan-200 mt-2">{{ context?.availableSeats }} seats available</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="feedback && !booking"
+      class="rounded-2xl border border-cyan-200 bg-cyan-50 px-6 py-4 text-cyan-800 font-medium shadow-sm flex items-center gap-3">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      {{ feedback }}
+    </div>
+
+    <div *ngIf="error"
+      class="rounded-2xl border border-rose-200 bg-rose-50 px-6 py-4 text-rose-700 font-medium shadow-sm flex items-center gap-3">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      {{ error }}
+    </div>
+
+    <div class="grid lg:grid-cols-[1.2fr_1fr] gap-8 items-start">
+
+      <!-- Seat Selection -->
+      <div class="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 p-8 sm:p-10">
+        <div class="flex justify-between items-end mb-8">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Select Seats</h2>
+            <p class="text-slate-500 mt-1">Click to choose your preferred seats.</p>
+          </div>
+
+          <!-- Legend -->
+          <div class="flex gap-4 text-xs font-medium bg-slate-50 p-3 rounded-2xl border border-slate-100">
+            <div class="flex items-center gap-1.5">
+              <div class="w-4 h-4 rounded-md border border-slate-200 bg-white"></div> Available
+            </div>
+            <div class="flex items-center gap-1.5">
+              <div class="w-4 h-4 rounded-md bg-emerald-500 shadow-sm shadow-emerald-200"></div> Selected
+            </div>
+            <div class="flex items-center gap-1.5">
+              <div class="w-4 h-4 rounded-md bg-pink-100 border border-pink-300"></div> Ladies
+            </div>
+            <div class="flex items-center gap-1.5">
+              <div class="w-4 h-4 rounded-md bg-slate-200 border border-slate-300"></div> Booked
+            </div>
+          </div>
+        </div>
+
+        <div class="relative overflow-x-auto py-4">
+          <div class="inline-flex flex-col gap-4 p-8 bg-slate-50 rounded-3xl border border-slate-100 min-w-full">
+            <div *ngFor="let row of seatMatrix" class="flex gap-4 justify-center">
+              <ng-container *ngFor="let seat of row">
+                <button *ngIf="seat" (click)="toggleSeat(seat)"
+                  [disabled]="seatsLocked || booking || isSeatUnavailable(seat.seatNumber)"
+                  [ngClass]="seatTone(seat.seatNumber)"
+                  class="relative w-14 h-16 rounded-xl border-2 flex items-center justify-center font-bold text-sm transition-all duration-200 shadow-sm focus:outline-none focus:ring-4 focus:ring-slate-200 disabled:cursor-not-allowed group hover:-translate-y-0.5 hover:shadow-md">
+                  {{ seat.seatNumber }}
+
+                  <!-- Seat back detail -->
+                  <div class="absolute top-1 left-2 right-2 h-2 rounded-full bg-black/10"></div>
+                </button>
+                <div *ngIf="!seat" class="w-14 h-16 flex items-center justify-center">
+                  <!-- Aisle -->
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Travelers & Actions -->
+      <div class="space-y-6">
+
+        <div *ngIf="selectedSeats.length > 0"
+          class="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 p-8">
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-bold text-slate-900 tracking-tight">Traveler Details</h3>
+            <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-bold">{{ selectedSeats.length
+              }} Seats</span>
+          </div>
+
+          <form [formGroup]="travelersForm" class="space-y-6">
+            <div formArrayName="travelers" class="space-y-4">
+              <div *ngFor="let t of travelers.controls; let i = index" [formGroup]="t"
+                class="bg-slate-50 border border-slate-100 rounded-3xl p-5 relative overflow-hidden transition-all hover:border-slate-200">
+                <div class="absolute top-0 right-0 bg-slate-800 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">
+                  Seat {{ t.get('seatNumber')?.value }}</div>
+
+                <h4 class="text-sm uppercase tracking-widest text-slate-400 font-semibold mb-4">Traveler {{ i + 1 }}
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+                  <div class="sm:col-span-6">
+                    <label class="block text-xs font-medium text-slate-500 mb-1 ml-1">Full Name</label>
+                    <input formControlName="name"
+                      class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-slate-800 focus:border-slate-800 outline-none transition"
+                      placeholder="John Doe">
+                  </div>
+                  <div class="sm:col-span-3">
+                    <label class="block text-xs font-medium text-slate-500 mb-1 ml-1">Age</label>
+                    <input formControlName="age" type="number"
+                      class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-slate-800 focus:border-slate-800 outline-none transition"
+                      placeholder="Age">
+                  </div>
+                  <div class="sm:col-span-3">
+                    <label class="block text-xs font-medium text-slate-500 mb-1 ml-1">Gender</label>
+                    <select formControlName="gender" [disabled]="isSingleLady"
+                      class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-slate-800 focus:border-slate-800 outline-none transition disabled:opacity-60 disabled:cursor-not-allowed">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <p *ngIf="isSingleLady" class="text-xs text-pink-600 mt-1 ml-1">Female-only booking</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div *ngIf="!booking" class="mt-8 flex flex-col sm:flex-row gap-4">
+            <button *ngIf="!seatsLocked" (click)="lockSeats()" [disabled]="isSubmitting"
+              class="flex-1 bg-slate-900 text-white font-semibold py-4 rounded-2xl shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed">
+              {{ isSubmitting ? 'Processing...' : 'Lock Seats' }}
+            </button>
+            <button *ngIf="seatsLocked" (click)="createBooking()" [disabled]="isSubmitting || travelersForm.invalid"
+              class="flex-1 bg-slate-900 text-white font-semibold py-4 rounded-2xl shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed">
+              {{ isSubmitting ? 'Creating...' : 'Proceed to Payment' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Premium Payment Section -->
+        <div *ngIf="booking"
+          class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] shadow-2xl p-8 sm:p-10 text-white relative overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-cyan-500 rounded-full blur-[80px] opacity-20 pointer-events-none -mt-20 -mr-20">
+          </div>
+
+          <div class="relative z-10">
+            <h3 class="text-xs uppercase tracking-[0.3em] text-cyan-400 font-semibold mb-2">Checkout</h3>
+            <h2 class="text-3xl font-serif font-medium mb-6">Complete Payment</h2>
+
+            <div class="bg-white/10 backdrop-blur border border-white/10 rounded-3xl p-6 mb-8">
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-slate-300 text-sm">Tickets ({{ selectedSeats.length }})</span>
+                <span class="font-medium">{{ (context?.trip?.price || 0) * selectedSeats.length | currency:'INR'
+                  }}</span>
+              </div>
+              <div class="flex justify-between items-center mb-4 pb-4 border-b border-white/10">
+                <span class="text-slate-300 text-sm">Platform Fee ({{ platformFeePercentage }}%)</span>
+                <span class="font-medium">{{ ((context?.trip?.price || 0) * selectedSeats.length * platformFeePercentage
+                  / 100) | currency:'INR' }}</span>
+              </div>
+              <div class="flex justify-between items-end">
+                <span class="text-slate-200 font-medium">Total Amount</span>
+                <span class="text-3xl font-bold text-cyan-300">{{ booking.totalAmount | currency:'INR' }}</span>
+              </div>
+            </div>
+
+            <!-- Fake Credit Card Visual -->
+            <div
+              class="w-full h-40 bg-gradient-to-tr from-slate-800 to-slate-700 rounded-2xl p-5 shadow-inner border border-white/5 flex flex-col justify-between mb-8 relative overflow-hidden group hover:scale-[1.02] transition-transform">
+              <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/5 rounded-full blur-2xl"></div>
+              <div class="flex justify-between items-center">
+                <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                </svg>
+                <div class="flex gap-1">
+                  <div class="w-6 h-6 rounded-full bg-rose-500/80 mix-blend-screen"></div>
+                  <div class="w-6 h-6 rounded-full bg-amber-500/80 mix-blend-screen -ml-3"></div>
+                </div>
+              </div>
+              <div>
+                <div class="text-slate-400 text-xs uppercase tracking-widest mb-1">Card Number</div>
+                <div class="font-mono text-lg tracking-widest">•••• •••• •••• 4242</div>
+              </div>
+            </div>
+
+            <button *ngIf="!ticket" (click)="payNow()" [disabled]="isSubmitting"
+              class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold text-lg py-4 rounded-2xl shadow-lg shadow-cyan-500/20 transition transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-3">
+              <span *ngIf="isSubmitting"
+                class="w-5 h-5 border-2 border-slate-900 border-t-transparent rounded-full animate-spin"></span>
+              {{ isSubmitting ? 'Processing Payment...' : 'Pay Securely' }}
+            </button>
+
+            <!-- Ticket Ready State -->
+            <div *ngIf="ticket"
+              class="bg-emerald-500/20 border border-emerald-500/30 rounded-2xl p-6 text-center animate-[fadeIn_0.5s_ease-out]">
+              <div
+                class="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg shadow-emerald-500/20">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-bold text-emerald-400 mb-1">Payment Successful!</h4>
+              <p class="text-sm text-slate-300 mb-4">Your tickets have been confirmed and sent to your email.</p>
+              <button (click)="downloadTicket()"
+                class="inline-flex items-center gap-2 bg-white text-slate-900 font-semibold px-6 py-2.5 rounded-xl hover:bg-slate-100 transition shadow-md">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                Download Ticket
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

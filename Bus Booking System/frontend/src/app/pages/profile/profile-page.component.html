@@ -1,0 +1,86 @@
+<section class="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+  <div class="rounded-[2rem] border border-white/70 bg-white/85 p-8 shadow-xl shadow-slate-200/60">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Profile</p>
+        <h1 class="mt-2 font-serif text-4xl text-slate-900">Your Account Details</h1>
+      </div>
+      <button 
+        *ngIf="profile"
+        (click)="toggleEdit()"
+        class="rounded-full bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-slate-800 transition">
+        {{ editMode ? 'Cancel' : 'Edit Profile' }}
+      </button>
+    </div>
+
+    <div *ngIf="message" class="mt-4 p-3 bg-emerald-50 text-emerald-700 rounded-lg font-medium text-sm">
+      {{ message }}
+    </div>
+
+    <div *ngIf="!profile" class="mt-8 text-center text-slate-500">
+      Loading profile...
+    </div>
+
+    <!-- View Mode -->
+    <div *ngIf="profile && !editMode" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="rounded-3xl bg-slate-50 p-5 shadow-sm border border-slate-100">
+        <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Name</p>
+        <p class="mt-2 text-lg font-semibold text-slate-900">{{ profile.name || 'Not set' }}</p>
+      </article>
+      <article class="rounded-3xl bg-slate-50 p-5 shadow-sm border border-slate-100">
+        <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Email</p>
+        <p class="mt-2 text-lg font-semibold text-slate-900">{{ profile.email }}</p>
+      </article>
+      <article class="rounded-3xl bg-slate-50 p-5 shadow-sm border border-slate-100">
+        <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Mobile Number</p>
+        <p class="mt-2 text-lg font-semibold text-slate-900">{{ profile.mobileNo || 'Not set' }}</p>
+      </article>
+      <article class="rounded-3xl bg-slate-50 p-5 shadow-sm border border-slate-100">
+        <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Gender</p>
+        <p class="mt-2 text-lg font-semibold text-slate-900">{{ profile.gender || 'Not set' }}</p>
+      </article>
+      <article class="rounded-3xl bg-slate-50 p-5 shadow-sm border border-slate-100">
+        <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Date of Birth</p>
+        <p class="mt-2 text-lg font-semibold text-slate-900">{{ profile.dob | date }}</p>
+      </article>
+      <article class="rounded-3xl bg-slate-50 p-5 shadow-sm border border-slate-100">
+        <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Role</p>
+        <p class="mt-2 text-lg font-semibold text-slate-900">
+          <span class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{{ profile.role }}</span>
+        </p>
+      </article>
+    </div>
+
+    <!-- Edit Mode -->
+    <div *ngIf="profile && editMode" class="mt-8 bg-slate-50 rounded-3xl p-6 border border-slate-100">
+      <form (ngSubmit)="saveProfile()" class="grid gap-6 sm:grid-cols-2">
+        <div>
+          <label class="block text-sm font-medium text-slate-700">Full Name</label>
+          <input type="text" [(ngModel)]="editData.name" name="name" class="mt-1 block w-full rounded-xl border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm h-11 px-3 border bg-white" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700">Mobile Number</label>
+          <input type="tel" [(ngModel)]="editData.mobileNo" name="mobileNo" class="mt-1 block w-full rounded-xl border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm h-11 px-3 border bg-white" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700">Gender</label>
+          <select [(ngModel)]="editData.gender" name="gender" class="mt-1 block w-full rounded-xl border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm h-11 px-3 border bg-white" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700">Date of Birth</label>
+          <input type="date" [(ngModel)]="editData.dob" name="dob" class="mt-1 block w-full rounded-xl border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm h-11 px-3 border bg-white" required>
+        </div>
+        
+        <div class="sm:col-span-2 pt-4 flex justify-end gap-3">
+          <button type="button" (click)="toggleEdit()" class="rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50 transition">Cancel</button>
+          <button type="submit" class="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 transition">Save Changes</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>

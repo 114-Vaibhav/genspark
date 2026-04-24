@@ -1,0 +1,71 @@
+############################
+# 🔹 OS FILES
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# 🔹 IDE / EDITOR
+############################
+.vscode/
+.idea/
+*.suo
+*.user
+*.cache
+
+############################
+# 🔹 ENV FILES (IMPORTANT)
+############################
+.env
+.env.*
+backend/appsettings.*.json
+
+############################
+# 🔹 LOG FILES
+############################
+*.log
+*-stderr.log
+*-stdout.log
+
+############################
+# 🔹 FRONTEND (ANGULAR)
+############################
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.cache/
+
+############################
+# 🔹 BACKEND (.NET)
+############################
+backend/bin/
+backend/obj/
+backend/*.log
+*.pdb
+
+############################
+# 🔹 DATABASE / LOCAL FILES
+############################
+*.sqlite
+*.db
+
+############################
+# 🔹 BUILD OUTPUT
+############################
+backend-build-out/
+dist/
+build/
+
+############################
+# 🔹 DEBUG / TEMP
+############################
+auth-debug/
+temp/
+tmp/
+
+############################
+# 🔹 PACKAGE LOCK (OPTIONAL)
+############################
+# Uncomment if you don’t want lock files
+# package-lock.json
+# yarn.lock

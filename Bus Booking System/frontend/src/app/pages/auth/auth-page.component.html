@@ -1,0 +1,117 @@
+<section class="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+  <div class="space-y-6">
+    <span
+      class="inline-flex rounded-full border border-amber-200 bg-amber-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-amber-700">
+      Secure Access
+    </span>
+    <h1 class="font-serif text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+      Sign in before booking, or register in minutes.
+    </h1>
+    <p class="max-w-2xl text-lg leading-8 text-slate-600">
+      Users can browse first, then authenticate only when they need protected actions. Operators can register here too,
+      and the backend will keep them inactive until admin approval.
+    </p>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <article class="rounded-[2rem] border border-white/70 bg-white/80 p-5 shadow-lg shadow-slate-200/60">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-400">User Flow</p>
+        <p class="mt-3 text-xl font-semibold text-slate-900">Search first, book later</p>
+        <p class="mt-2 text-sm text-slate-500">Login becomes mandatory only before seat locking and booking.</p>
+      </article>
+      <article class="rounded-[2rem] border border-white/70 bg-white/80 p-5 shadow-lg shadow-slate-200/60">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-400">Operator Flow</p>
+        <p class="mt-3 text-xl font-semibold text-slate-900">Register for approval</p>
+        <p class="mt-2 text-sm text-slate-500">Operator accounts can be created from the same screen using role
+          selection.</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-2xl shadow-slate-200/70">
+    <div class="mb-6 flex rounded-full bg-slate-100 p-1">
+      <button type="button" (click)="setMode('login')"
+        [class]="mode === 'login' ? 'bg-slate-900 text-white' : 'text-slate-600'"
+        class="flex-1 rounded-full px-4 py-3 text-sm font-semibold transition">Login</button>
+      <button type="button" (click)="setMode('register')"
+        [class]="mode === 'register' ? 'bg-slate-900 text-white' : 'text-slate-600'"
+        class="flex-1 rounded-full px-4 py-3 text-sm font-semibold transition">Register</button>
+    </div>
+
+    <div *ngIf="feedback" class="mb-4 rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-800">{{
+      feedback }}</div>
+    <div *ngIf="error" class="mb-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{{
+      error }}</div>
+
+    <form *ngIf="mode === 'login'" [formGroup]="loginForm" (ngSubmit)="submitLogin()" class="space-y-4">
+      <div>
+        <label class="mb-2 block text-sm font-medium text-slate-700">Email</label>
+        <input type="email" formControlName="email"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+          placeholder="traveler@example.com" />
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-medium text-slate-700">Password</label>
+        <input type="password" formControlName="password"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+          placeholder="Enter password" />
+      </div>
+      <button type="submit"
+        class="w-full rounded-2xl bg-slate-900 px-4 py-3 font-semibold text-white transition hover:bg-slate-700">
+        {{ isSubmitting ? 'Signing in...' : 'Login' }}
+      </button>
+    </form>
+
+    <form *ngIf="mode === 'register'" [formGroup]="registerForm" (ngSubmit)="submitRegister()"
+      class="grid gap-4 sm:grid-cols-2">
+      <div class="sm:col-span-2">
+        <label class="mb-2 block text-sm font-medium text-slate-700">Full name</label>
+        <input formControlName="name"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+          placeholder="Vaibhav Kumar" />
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-medium text-slate-700">Email</label>
+        <input type="email" formControlName="email"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900" />
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-medium text-slate-700">Mobile number</label>
+        <input formControlName="mobileNo"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900" />
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-medium text-slate-700">Gender</label>
+        <select formControlName="gender"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-medium text-slate-700">Date of birth</label>
+        <input type="date" formControlName="dob"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900" />
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-medium text-slate-700">Role</label>
+        <select formControlName="role"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900">
+          <option value="User">User</option>
+          <option value="Operator">Operator</option>
+        </select>
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-medium text-slate-700">Password</label>
+        <input type="password" formControlName="password"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900" />
+      </div>
+      <div class="sm:col-span-2">
+        <button type="submit"
+          class="w-full rounded-2xl bg-slate-900 px-4 py-3 font-semibold text-white transition hover:bg-slate-700">
+          {{ isSubmitting ? 'Creating account...' : 'Register' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

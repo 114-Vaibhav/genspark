@@ -16,8 +16,10 @@ namespace backend.Data
         public DbSet<SeatLayout> SeatLayouts { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<SeatLock> SeatLocks { get; set; }
+        public DbSet<Setting> Settings { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Traveler> Travelers { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Cancellation> Cancellations { get; set; }
     }
 }

@@ -7,7 +7,9 @@ namespace backend.Models
         public Guid TripId { get; set; }
 
         public decimal TotalAmount { get; set; }
-        public string Status { get; set; } // Pending / Confirmed
+        public decimal PlatformFee { get; set; }
+        public decimal RefundAmount { get; set; }
+        public string Status { get; set; } // Pending / Confirmed / Cancelled
 
         public DateTime CreatedAt { get; set; }
     }
