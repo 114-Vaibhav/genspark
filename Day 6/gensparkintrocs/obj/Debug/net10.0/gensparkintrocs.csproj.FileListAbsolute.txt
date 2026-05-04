@@ -1,0 +1,15 @@
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/bin/Debug/net10.0/gensparkintrocs
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/bin/Debug/net10.0/gensparkintrocs.deps.json
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/bin/Debug/net10.0/gensparkintrocs.runtimeconfig.json
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/bin/Debug/net10.0/gensparkintrocs.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/bin/Debug/net10.0/gensparkintrocs.pdb
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/gensparkintrocs.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/gensparkintrocs.AssemblyInfoInputs.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/gensparkintrocs.AssemblyInfo.cs
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/gensparkintrocs.csproj.CoreCompileInputs.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/gensparkintrocs.sourcelink.json
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/gensparkintrocs.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/refint/gensparkintrocs.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/gensparkintrocs.pdb
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/gensparkintrocs.genruntimeconfig.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 6/gensparkintrocs/obj/Debug/net10.0/ref/gensparkintrocs.dll

@@ -1,0 +1,15 @@
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/bin/Debug/net10.0/day6C#May4th
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/bin/Debug/net10.0/day6C#May4th.deps.json
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/bin/Debug/net10.0/day6C#May4th.runtimeconfig.json
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/bin/Debug/net10.0/day6C#May4th.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/bin/Debug/net10.0/day6C#May4th.pdb
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/day6C#May4th.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/day6C#May4th.AssemblyInfoInputs.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/day6C#May4th.AssemblyInfo.cs
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/day6C#May4th.csproj.CoreCompileInputs.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/day6C#May4th.sourcelink.json
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/day6C#May4th.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/refint/day6C#May4th.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/day6C#May4th.pdb
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/day6C#May4th.genruntimeconfig.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/Debug/net10.0/ref/day6C#May4th.dll

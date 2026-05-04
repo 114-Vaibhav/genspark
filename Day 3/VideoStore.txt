@@ -1,0 +1,38 @@
+CREATE TABLE movies (
+    movie_number NUMBER UNIQUE PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    format VARCHAR(3) CHECK(format IN ('VHS','VCD','DVD')),
+    category VARCHAR(50) CHECK(format IN ('action','adventure','comedy'))
+
+)
+
+CREATE TABLE members(
+    member_id NUMBER AUTO INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    phone_no NUMBER(10) UNIQUE NOT NULL ,
+    fav_category VARCHAR(50) DEFAULT 'NONE',
+    member_type VARCHAR(6) DEFAULT 'BRONZE' CHECK(member_type IN ('BRONZE','GOLDEN'))
+   
+)
+
+CREATE TABLE member_dependent(
+    dependent_id NUMBER AUTO INCREMENT PRIMARY KEY,
+    member_id NUMBER,
+    dependent_name VARCHAR(50)
+    FOREIGN KEY (member_id) REFERENCES Areas(members)
+)
+
+CREATE TABLE store_transactions(
+    transaction_id NUMBER AUTO INCREMENT PRIMARY KEY,
+    member_id NUMBER NOT NULL,
+    dependent_id NUMBER,
+    movie_number NUMBER,
+    rent_date DATE DEFAULT SYSDATE,
+    return_date DATE,
+    FOREIGN KEY (member_id) REFERENCES members(member_id),
+    FOREIGN KEY (movie_number) REFERENCES movies(movie_number),
+    FOREIGN KEY (dependent_id) REFERENCES member_dependent(dependent_id)
+)
+
+
+
