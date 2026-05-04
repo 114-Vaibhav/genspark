@@ -31,6 +31,12 @@ namespace backend.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<decimal>("PlatformFee")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("RefundAmount")
+                        .HasColumnType("numeric");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text");
@@ -74,6 +80,26 @@ namespace backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Buses");
+                });
+
+            modelBuilder.Entity("backend.Models.Cancellation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("BookingId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CancelledAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("RefundAmount")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cancellations");
                 });
 
             modelBuilder.Entity("backend.Models.Operator", b =>
@@ -141,6 +167,17 @@ namespace backend.Migrations
                     b.Property<double>("Distance")
                         .HasColumnType("double precision");
 
+                    b.PrimitiveCollection<string[]>("DropPoints")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.PrimitiveCollection<string[]>("PickupPoints")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
                     b.Property<string>("Source")
                         .IsRequired()
                         .HasColumnType("text");
@@ -180,6 +217,14 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("BusType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Configuration")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -214,6 +259,25 @@ namespace backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SeatLocks");
+                });
+
+            modelBuilder.Entity("backend.Models.Setting", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("backend.Models.Traveler", b =>
@@ -260,8 +324,16 @@ namespace backend.Migrations
                     b.Property<TimeSpan>("DepartureTime")
                         .HasColumnType("interval");
 
+                    b.Property<string>("DropAddress")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("JourneyDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("PickupAddress")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");

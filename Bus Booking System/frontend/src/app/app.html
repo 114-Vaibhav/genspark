@@ -1,0 +1,45 @@
+<div class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.18),_transparent_30%),linear-gradient(180deg,#f8fafc_0%,#e0f2fe_100%)] text-slate-900">
+  <header class="sticky top-0 z-20 border-b border-white/40 bg-white/80 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <a routerLink="/" class="flex items-center gap-3">
+        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">
+          BB
+        </div>
+        <div>
+          <p class="font-serif text-xl font-semibold">Bus Booking System</p>
+          <p class="text-xs uppercase tracking-[0.3em] text-slate-500">Search. Lock. Travel.</p>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-3 md:flex">
+        <a routerLink="/" routerLinkActive="bg-slate-900 text-white" [routerLinkActiveOptions]="{ exact: true }" class="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-900 hover:text-white">Home</a>
+        <a *ngIf="authService.isLoggedIn() && authService.role() === 'User'" routerLink="/history" routerLinkActive="bg-slate-900 text-white" class="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-900 hover:text-white">History</a>
+        <a *ngIf="authService.isLoggedIn() && authService.role() === 'User'" routerLink="/profile" routerLinkActive="bg-slate-900 text-white" class="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-900 hover:text-white">Profile</a>
+        <a *ngIf="authService.role() === 'Operator'" routerLink="/operator" routerLinkActive="bg-slate-900 text-white" class="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-900 hover:text-white">Operator</a>
+        <a *ngIf="authService.role() === 'Admin'" routerLink="/admin" routerLinkActive="bg-slate-900 text-white" class="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-900 hover:text-white">Admin</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div *ngIf="authService.isLoggedIn()" class="hidden text-right sm:block">
+          <p class="text-sm font-semibold">{{ authService.session().email }}</p>
+          <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{{ authService.role() }}</p>
+        </div>
+
+        <a *ngIf="!authService.isLoggedIn()" routerLink="/auth" class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700">Login</a>
+        <button *ngIf="authService.isLoggedIn()" type="button" (click)="authService.logout()" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-900 hover:text-slate-900">
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <router-outlet />
+  </main>
+  <footer class="border-t border-slate-200/70 bg-white/70">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-sm text-slate-500 sm:px-6 lg:px-8 md:flex-row md:items-center md:justify-between">
+      <p>Angular frontend wired to your ASP.NET backend on <span class="font-semibold text-slate-700">http://localhost:5299</span>.</p>
+      <p>Public trip search is open. Booking stays protected behind login.</p>
+    </div>
+  </footer>
+</div>

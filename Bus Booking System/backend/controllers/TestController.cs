@@ -10,6 +10,7 @@ namespace backend.Controllers
         [HttpGet("/secure")]
         public IActionResult Secure()
         {
+            Console.WriteLine("[Test/Secure] /secure endpoint called");
             return Ok("You are authenticated");
         }
 
@@ -17,6 +18,7 @@ namespace backend.Controllers
         [HttpGet("/admin")]
         public IActionResult Admin()
         {
+            Console.WriteLine("[Test/Admin] /admin endpoint called");
             return Ok("Admin only access");
         }
     }

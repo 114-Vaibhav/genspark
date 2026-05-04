@@ -1,0 +1,221 @@
+<section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mb-8">
+    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Operator Workspace</p>
+    <h1 class="mt-2 font-serif text-4xl text-slate-900">Layout, bus, and trip management</h1>
+    <p class="mt-3 max-w-3xl text-slate-600">
+      This screen maps to the operator-protected APIs you already built. Operators must be approved by admin before bus
+      creation succeeds.
+    </p>
+  </div>
+
+  <div *ngIf="feedback" class="mb-4 rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-800">{{
+    feedback }}</div>
+  <div *ngIf="error" class="mb-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{{ error
+    }}</div>
+
+  <!-- Tabs -->
+  <div class="mb-8 flex space-x-4 border-b border-slate-200">
+    <button (click)="setTab('management')" [class.border-slate-900]="activeTab === 'management'"
+      [class.text-slate-900]="activeTab === 'management'"
+      class="px-4 py-3 font-semibold text-slate-500 border-b-2 border-transparent transition hover:text-slate-900">
+      Bus Management
+    </button>
+    <button (click)="setTab('bookings')" [class.border-slate-900]="activeTab === 'bookings'"
+      [class.text-slate-900]="activeTab === 'bookings'"
+      class="px-4 py-3 font-semibold text-slate-500 border-b-2 border-transparent transition hover:text-slate-900">
+      All Bookings
+    </button>
+    <button (click)="setTab('passengers')" [class.border-slate-900]="activeTab === 'passengers'"
+      [class.text-slate-900]="activeTab === 'passengers'"
+      class="px-4 py-3 font-semibold text-slate-500 border-b-2 border-transparent transition hover:text-slate-900">
+      Trip Passengers
+    </button>
+  </div>
+
+  <div *ngIf="activeTab === 'management'" class="grid gap-6 xl:grid-cols-2">
+    <section class="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-lg shadow-slate-200/60">
+      <p class="text-sm uppercase tracking-[0.25em] text-slate-400">Step 1</p>
+      <h2 class="mt-2 text-2xl font-semibold text-slate-900">Create seat layout</h2>
+      <form [formGroup]="layoutForm" (ngSubmit)="createLayout()" class="mt-6 space-y-4">
+        <input formControlName="name"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+          placeholder="Layout Name (e.g. Deluxe Sleeper)" />
+        <select formControlName="busType"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900">
+          <option value="Seater">Seater</option>
+          <option value="Sleeper">Sleeper</option>
+        </select>
+        <select formControlName="configuration"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900">
+          <option value="2+2">2 + 2</option>
+          <option value="2+3">2 + 3</option>
+          <option value="1+2">1 + 2</option>
+        </select>
+        <input type="number" formControlName="totalSeats"
+          class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+          placeholder="Total seats" />
+        <button type="submit"
+          class="rounded-2xl bg-slate-900 px-4 py-3 font-semibold text-white transition hover:bg-slate-700">Create
+          Auto-Layout</button>
+      </form>
+      <p *ngIf="latestLayoutId" class="mt-4 text-sm text-slate-500">Latest layout id: {{ latestLayoutId }}</p>
+    </section>
+
+
+
+    <section class="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-lg shadow-slate-200/60">
+      <p class="text-sm uppercase tracking-[0.25em] text-slate-400">Step 3</p>
+      <h2 class="mt-2 text-2xl font-semibold text-slate-900">Register bus</h2>
+      <form [formGroup]="busForm" (ngSubmit)="addBus()" class="mt-6 grid gap-4">
+        <input formControlName="busNumber"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+          placeholder="TN-01-AB-1234" />
+        <input type="number" formControlName="totalSeats"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+          placeholder="Total seats" />
+        <input formControlName="layoutId"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+          placeholder="Layout Id" />
+        <label class="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-700">
+          <input type="checkbox" formControlName="isActive" />
+          Bus is active and available
+        </label>
+        <button type="submit"
+          class="rounded-2xl bg-slate-900 px-4 py-3 font-semibold text-white transition hover:bg-slate-700">Add
+          Bus</button>
+      </form>
+    </section>
+
+    <section class="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-lg shadow-slate-200/60">
+      <p class="text-sm uppercase tracking-[0.25em] text-slate-400">Step 3</p>
+      <h2 class="mt-2 text-2xl font-semibold text-slate-900">Create trip</h2>
+      <form [formGroup]="tripForm" (ngSubmit)="createTrip()" class="mt-6 grid gap-4 sm:grid-cols-2">
+        <select formControlName="busId"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900 sm:col-span-2">
+          <option value="">Select bus</option>
+          <option *ngFor="let bus of buses" [value]="bus.id">{{ bus.busNumber }}</option>
+        </select>
+        <select formControlName="routeId"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900 sm:col-span-2">
+          <option value="">Select route</option>
+          <option *ngFor="let route of routes" [value]="route.id">{{ route.source }} -> {{ route.destination }}</option>
+        </select>
+        <input type="date" formControlName="journeyDate"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900" />
+        <input type="number" formControlName="price"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+          placeholder="Price" />
+        <input type="time" formControlName="departureTime"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900" />
+        <input type="time" formControlName="arrivalTime"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900" />
+        <input formControlName="pickupAddress"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900 sm:col-span-2"
+          placeholder="Pickup Address (e.g. 123 Main St, Source City)" />
+        <input formControlName="dropAddress"
+          class="rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900 sm:col-span-2"
+          placeholder="Drop Address (e.g. 456 Elm St, Dest City)" />
+        <button type="submit"
+          class="rounded-2xl bg-slate-900 px-4 py-3 font-semibold text-white transition hover:bg-slate-700 sm:col-span-2">Create
+          Trip</button>
+      </form>
+    </section>
+
+    <!-- Bus List for Toggling -->
+    <section class="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-lg shadow-slate-200/60 xl:col-span-2">
+      <h2 class="mt-2 text-2xl font-semibold text-slate-900 mb-4">My Buses</h2>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <article *ngFor="let bus of buses"
+          class="rounded-3xl bg-slate-50 p-5 border border-slate-100 flex flex-col justify-between items-start">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900">{{ bus.busNumber }}</h3>
+            <p class="text-sm text-slate-500 mt-1">Seats: {{ bus.totalSeats }}</p>
+          </div>
+          <button (click)="toggleBus(bus.id)"
+            class="mt-4 w-full rounded-2xl px-4 py-2 text-sm font-semibold text-white transition"
+            [ngClass]="bus.isActive ? 'bg-rose-500 hover:bg-rose-600' : 'bg-emerald-500 hover:bg-emerald-600'">
+            {{ bus.isActive ? 'Make Unavailable' : 'Make Active' }}
+          </button>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <div *ngIf="activeTab === 'bookings'"
+    class="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-lg shadow-slate-200/60 overflow-hidden">
+    <h2 class="text-2xl font-semibold text-slate-900 mb-6">Recent Bookings</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-slate-600">
+        <thead class="bg-slate-50 text-slate-900">
+          <tr>
+            <th class="p-4 font-semibold rounded-tl-xl">Date</th>
+            <th class="p-4 font-semibold">User</th>
+            <th class="p-4 font-semibold">Bus</th>
+            <th class="p-4 font-semibold">Route</th>
+            <th class="p-4 font-semibold">Amount</th>
+            <th class="p-4 font-semibold">Fee</th>
+            <th class="p-4 font-semibold rounded-tr-xl">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr *ngFor="let b of operatorBookings" class="hover:bg-slate-50/50 transition">
+            <td class="p-4">{{ b.journeyDate }}</td>
+            <td class="p-4 font-medium">{{ b.userName }}</td>
+            <td class="p-4">{{ b.busNumber }}</td>
+            <td class="p-4">{{ b.source }} &rarr; {{ b.destination }}</td>
+            <td class="p-4">₹{{ b.totalAmount }}</td>
+            <td class="p-4">₹{{ b.platformFee }}</td>
+            <td class="p-4">
+              <span class="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold" [ngClass]="{
+                  'bg-amber-100 text-amber-800': b.status === 'Pending',
+                  'bg-emerald-100 text-emerald-800': b.status === 'Confirmed',
+                  'bg-rose-100 text-rose-800': b.status === 'Cancelled'
+                }">
+                {{ b.status }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="operatorBookings.length === 0">
+            <td colspan="7" class="p-8 text-center text-slate-500">No bookings found for your buses.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'passengers'"
+    class="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-lg shadow-slate-200/60">
+    <h2 class="text-2xl font-semibold text-slate-900 mb-6">View Trip Passengers</h2>
+    <div class="flex gap-4 mb-8">
+      <input type="text" [(ngModel)]="selectedTripIdForPassengers" placeholder="Enter Trip ID"
+        class="w-full max-w-md rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900" />
+      <button (click)="loadPassengers()"
+        class="rounded-2xl bg-slate-900 px-6 py-3 font-semibold text-white transition hover:bg-slate-700">Load</button>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <article *ngFor="let p of tripPassengers"
+        class="rounded-3xl bg-slate-50 p-5 border border-slate-100 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <p class="font-semibold text-lg text-slate-900">{{ p.name }}</p>
+            <span class="text-xl font-bold text-slate-300">{{ p.seatNumber }}</span>
+          </div>
+          <p class="text-sm text-slate-500 mb-1">{{ p.age }} yrs • {{ p.gender }}</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-200 flex justify-between items-center">
+          <span class="text-xs uppercase tracking-wider text-slate-400">Status</span>
+          <span class="text-sm font-semibold" [ngClass]="{
+              'text-emerald-600': p.bookingStatus === 'Confirmed',
+              'text-rose-600': p.bookingStatus === 'Cancelled'
+            }">{{ p.bookingStatus }}</span>
+        </div>
+      </article>
+      <div *ngIf="tripPassengers.length === 0 && selectedTripIdForPassengers"
+        class="col-span-full py-8 text-center text-slate-500">
+        No passengers found for this trip.
+      </div>
+    </div>
+  </div>
+
+</section>

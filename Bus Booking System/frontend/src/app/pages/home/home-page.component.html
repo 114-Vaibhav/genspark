@@ -1,0 +1,146 @@
+<section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+  <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+    <div class="space-y-6">
+      <span class="inline-flex rounded-full border border-cyan-200 bg-cyan-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-700">
+        Public Trip Search
+      </span>
+      <div class="space-y-4">
+        <h1 class="max-w-3xl font-serif text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">
+          Book buses fast, then finish the secure part only when you’re ready.
+        </h1>
+        <p class="max-w-2xl text-lg leading-8 text-slate-600">
+          Search routes without logging in, compare buses, and jump into seat locking and booking after authentication.
+          The experience is wired to your ASP.NET API, including history, payment, cancellation, and ticket download.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-3">
+        <article class="rounded-3xl border border-white/60 bg-white/80 p-5 shadow-sm shadow-cyan-100">
+          <p class="text-sm uppercase tracking-[0.3em] text-slate-400">Fuzzy Search</p>
+          <p class="mt-3 text-2xl font-semibold text-slate-900">Source & destination</p>
+          <p class="mt-2 text-sm text-slate-500">Matches partial route names using the backend search endpoints.</p>
+        </article>
+        <article class="rounded-3xl border border-white/60 bg-white/80 p-5 shadow-sm shadow-cyan-100">
+          <p class="text-sm uppercase tracking-[0.3em] text-slate-400">Seat Hold</p>
+          <p class="mt-3 text-2xl font-semibold text-slate-900">5-minute lock</p>
+          <p class="mt-2 text-sm text-slate-500">Seat locking is protected, so booking only continues after login.</p>
+        </article>
+        <article class="rounded-3xl border border-white/60 bg-white/80 p-5 shadow-sm shadow-cyan-100">
+          <p class="text-sm uppercase tracking-[0.3em] text-slate-400">Dummy Payment</p>
+          <p class="mt-3 text-2xl font-semibold text-slate-900">Fast confirmation</p>
+          <p class="mt-2 text-sm text-slate-500">Create a booking, simulate payment, and download a ticket instantly.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="rounded-[2rem] border border-white/60 bg-slate-950 p-6 text-white shadow-2xl shadow-cyan-200/40">
+      <div class="mb-6">
+        <p class="text-sm uppercase tracking-[0.35em] text-cyan-300">Plan A Journey</p>
+        <h2 class="mt-3 font-serif text-3xl">Search buses</h2>
+      </div>
+
+      <form [formGroup]="searchForm" (ngSubmit)="searchTrips()" class="space-y-4">
+        <div>
+          <label class="mb-2 block text-sm font-medium text-slate-300">Source</label>
+          <input list="cities" formControlName="source" class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-slate-400 focus:border-cyan-300" placeholder="Chennai" />
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-medium text-slate-300">Destination</label>
+          <input list="cities" formControlName="destination" class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-slate-400 focus:border-cyan-300" placeholder="Bangalore" />
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-medium text-slate-300">Journey date</label>
+          <input type="date" formControlName="date" class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-white outline-none focus:border-cyan-300" />
+        </div>
+        <label class="flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-700 bg-white">
+          <input type="checkbox" formControlName="isSingleLady" class="accent-pink-500 w-4 h-4" />
+          <span class="font-semibold text-pink-700">Single Lady Traveler?</span>
+        </label>
+        
+        <button type="submit" [disabled]="isSearching" class="rounded-2xl bg-slate-900 px-6 py-3 font-semibold text-white transition hover:bg-slate-700 disabled:opacity-70 disabled:cursor-not-allowed">
+          {{ isSearching ? 'Searching...' : 'Search Trips' }}
+        </button>
+      </form>
+
+      <datalist id="cities">
+        <option *ngFor="let city of cityOptions" [value]="city"></option>
+      </datalist>
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+  <div class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+    <div>
+      <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Results</p>
+      <h2 class="mt-2 font-serif text-3xl text-slate-900">Available buses</h2>
+    </div>
+    <p class="max-w-2xl text-sm text-slate-500">
+      You can browse results without logging in. Seat selection, locking, booking, and payment stay protected.
+    </p>
+  </div>
+
+  <div *ngIf="feedback" class="mb-4 rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-800">{{ feedback }}</div>
+  <div *ngIf="error" class="mb-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{{ error }}</div>
+
+  <div *ngIf="hasSearched && !results.length" class="rounded-[2rem] border border-dashed border-slate-300 bg-white/70 p-10 text-center text-slate-500">
+    Search a route above to see matching trips here.
+  </div>
+
+  <div class="grid gap-5" *ngIf="results.length">
+    <article *ngFor="let result of results; trackBy: trackByTripId" class="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-lg shadow-slate-200/60">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div class="grid gap-5 md:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white">
+                {{ result.bus.busNumber || 'Bus pending details' }}
+              </span>
+              <span class="rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700">
+                {{ result.route.source || 'Source' }} to {{ result.route.destination || 'Destination' }}
+              </span>
+            </div>
+            <div class="mt-4 flex flex-wrap items-center gap-6 text-sm text-slate-600">
+              <div>
+                <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Departure</p>
+                <p class="mt-1 text-lg font-semibold text-slate-900">{{ formatTime(result.trip.departureTime) }}</p>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Arrival</p>
+                <p class="mt-1 text-lg font-semibold text-slate-900">{{ formatTime(result.trip.arrivalTime) }}</p>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Journey date</p>
+                <p class="mt-1 text-lg font-semibold text-slate-900">{{ result.trip.journeyDate | date: 'mediumDate' }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 rounded-3xl bg-slate-50 p-4">
+            <div>
+              <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Seats listed</p>
+              <p class="mt-2 text-2xl font-semibold text-slate-900">{{ result.availableSeats }}</p>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Fare</p>
+              <p class="mt-2 text-2xl font-semibold text-slate-900">{{ result.trip.price | currency: 'INR' }}</p>
+            </div>
+            <div class="col-span-2">
+              <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Travel time</p>
+              <p class="mt-2 text-sm text-slate-600">{{ result.travelMinutes }} minutes from {{ formatTime(result.trip.departureTime) }} to {{ formatTime(result.trip.arrivalTime) }}.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-start gap-3 lg:items-end">
+          <button type="button" (click)="continueToBooking(result)" class="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700">
+            {{ authService.isLoggedIn() ? 'Select Seats' : 'Login to Book' }}
+          </button>
+          <p class="max-w-xs text-sm text-slate-500">
+            {{ authService.isLoggedIn() ? 'You can continue straight to seat selection.' : 'We will keep this trip selected and send you to login before booking.' }}
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

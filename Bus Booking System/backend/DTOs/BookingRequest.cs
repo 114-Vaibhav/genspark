@@ -8,5 +8,6 @@ namespace backend.DTOs
     {
         public Guid TripId { get; set; }
         public List<Traveler> Travelers { get; set; }
+        public bool IsSingleLady { get; set; } = false;
     }
 }

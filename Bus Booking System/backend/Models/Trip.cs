@@ -12,5 +12,8 @@ namespace backend.Models
         public TimeSpan ArrivalTime { get; set; }
 
         public decimal Price { get; set; }
+        
+        public string PickupAddress { get; set; } = string.Empty;
+        public string DropAddress { get; set; } = string.Empty;
     }
 }

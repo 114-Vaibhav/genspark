@@ -3,15 +3,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using backend.Security;
+using backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 //Hi changed for check git on mac
 
+var connectionString = "Host=localhost;Port=5432;Database=bus_ticket_booking;Username=postgres;Password=8098";
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql("Host=localhost;Port=5432;Database=bus_ticket_booking;Username=postgres;Password=8098"));
+    options.UseNpgsql(connectionString));
 
-var key = Encoding.UTF8.GetBytes("THIS_IS_MY_SECRET_KEY_12345");
+builder.Services.AddSingleton(new PostgresSqlRunner(connectionString));
+builder.Services.AddScoped<IEmailService, SmtpEmailService>();
+
+var key = Encoding.UTF8.GetBytes(JwtSettings.SecretKey);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -44,6 +50,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+Console.WriteLine("[Program] Backend starting on configured URLs");
 
 app.UseSwagger();
 app.UseSwaggerUI();
