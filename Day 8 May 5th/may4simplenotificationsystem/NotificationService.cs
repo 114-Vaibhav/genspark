@@ -9,7 +9,7 @@ namespace simplenotification
         Dictionary<int,User> users = new Dictionary<int, User>();
         Dictionary<string,int> idmapping = new Dictionary<string, int>();
 
-         public User CreateUser()
+        public User CreateUser()
         {
             
             System.Console.WriteLine("Enter the user's name: ");
