@@ -10,10 +10,9 @@
 //     {
 //         SavingAccount =1,CurrentAccount=2
 //     }
-//     internal class Account 
+//     internal class Account : IComparable<Account>
 //     {
         
-
 //         public  string AccountNumber { get; set; } =string.Empty;
 //         public string NameOnAccount { get; set; } = string.Empty;
 //         public DateTime DateOfBirth { get; set; }
@@ -40,210 +39,73 @@
 //             return $"Account Number : {AccountNumber}\nAccountType : {AccountType}\nAccount Holder Name : {NameOnAccount}\nPhone Number : {Phone}\n" +
 //                 $"Email : {Email}\nBalance : ${Balance}";
 //         }
-//     }
-// }
 
-// -------------------------------------------------------------------------------------------
-
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Text;
-// using System.Threading.Tasks;
-
-// namespace UnderstandingOOPSApp.Models
-// {
-//     internal class CurrentAccount : Account
-//     {
-//         public CurrentAccount()
+//         public int CompareTo(Account? other)
 //         {
-//             AccountType = AccType.CurrentAccount;
-//             Balance = 0.0f;
-//         }
-       
-//     }
-// }
-
-
-
-// -------------------------------------------------------------------------------------------
-
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Text;
-// using System.Threading.Tasks;
-
-// namespace UnderstandingOOPSApp.Models
-// {
-//     internal class SavingAccount :Account
-//     {
-//         public SavingAccount()
-//         {
-//             AccountType = AccType.SavingAccount;
-//             Balance = 100.0f;
+//             return this.AccountNumber.CompareTo(other.AccountNumber);
 //         }
 //     }
 // }
-
-
-
-// -------------------------------------------------------------------------------------------
-
+// -------------------------------------------------------------
+// d
+// -----------------------------------------------------------------
+// using Microsoft.VisualBasic;
 // using System;
 // using System.Collections.Generic;
 // using System.Linq;
-// using System.Text;
-// using System.Threading.Tasks;
-// using UnderstandingOOPSApp.Models;
-
-// namespace UnderstandingOOPSApp.Interfaces
-// {
-//     internal interface ICustomerInteract
-//     {
-//         public Account OpensAccount();
-//         public void PrintAccountDetails(string accountNumber);
-
-//     }
-// }
-
-
-
-// -------------------------------------------------------------------------------------------
-
-
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
+// using System.Security.Principal;
 // using System.Text;
 // using System.Threading.Tasks;
 // using UnderstandingOOPSApp.Interfaces;
 // using UnderstandingOOPSApp.Models;
 
-// namespace UnderstandingOOPSApp.Services
+// namespace UnderstandingOOPSApp.Repositories
 // {
-//     internal class CustomerService : ICustomerInteract
+//     internal class AccountRepository : IRepository<string, Account>
 //     {
-//         List<Account> accounts = new List<Account>();
+//         Dictionary<string, Account> _accountMap = new Dictionary<string, Account>();
 //         static string lastAccountNumber = "9990001000";
-//         public Account OpensAccount()
+//         public Account Create(Account item)
 //         {
-//             Account account = TakeCustomerDetails();
-//             TakeInitialDeposit(account);
 //             long accNum = Convert.ToInt64(lastAccountNumber);
-//             account.AccountNumber =  (++accNum).ToString();
+//             item.AccountNumber = (++accNum).ToString();
 //             lastAccountNumber = accNum.ToString();
-//             accounts.Add(account);
+//             _accountMap.Add(lastAccountNumber, item);
+//             return item;
+//         }
+
+//         public Account? Delete(string key)
+//         {
+//             var account = GetAccount(key);
+//             if (account == null)
+//                 return null;
+//             _accountMap.Remove(key);
 //             return account;
 //         }
 
-//         private void TakeInitialDeposit(Account account)
+//         public Account? GetAccount(string key)
 //         {
-//             Console.WriteLine("Do you want to deposit any amount now. If yes enter the amount. else enter 0.?");
-//             float amount = 0;
-//             while(!float.TryParse(Console.ReadLine(), out amount))
-//                 Console.WriteLine("Invalid entry. Please enter the deposit amount");
-//             account.Balance += amount;
-
+//             if( _accountMap.ContainsKey(key))
+//                 return _accountMap[key];
+//             return null;
 //         }
 
-//         private Account TakeCustomerDetails()
+//         public List<Account>? GetAccounts()
 //         {
-//             Account account = new Account();
-//             Console.WriteLine("Please select the type of account you want to open. 1 for savings. 2 for current");
-//             int typeChoice;
-//             while(!int.TryParse(Console.ReadLine(), out typeChoice) && typeChoice>0 && typeChoice<3)
-//                 Console.WriteLine("Invalid entry. Please try again");
-//             if(typeChoice == 1)
-//                 account = new SavingAccount();
-//             if(typeChoice == 2)
-//                 account = new CurrentAccount();
-//             Console.WriteLine("Please enter your full name");
-//             account.NameOnAccount = Console.ReadLine()??"";
-//             Console.WriteLine("Please enter your Date of birth in yyyy-mm--dd format");
-//             DateTime dob;
-//             while(!DateTime.TryParse(Console.ReadLine(),out dob ) && dob>DateTime.Today)
-//                 Console.WriteLine("Invalid entry for date. Please try again");
-//             Console.WriteLine("Please enter your email address");
-//             account.Email = Console.ReadLine() ?? "";
-//             Console.WriteLine("Please enter your phone number");
-//             account.Phone = Console.ReadLine() ?? "";
-//             return account;
-
+//             if(_accountMap.Count == 0) 
+//                 return null;
+//             var list = _accountMap.Values.ToList();
+//             list.Sort();
+//             return list;
 //         }
 
-//         public void PrintAccountDetails(string accountNumber)
+//         public Account? Update(string key, Account item)
 //         {
-//             Account account = null;
-//             foreach (var item in accounts)
-//             {
-//                 if(item.AccountNumber == accountNumber)
-//                 {
-//                     account = item;
-//                     break;
-//                 }
-//             }
-//             if (account != null)
-//             {
-//                 PrintAccount(account);
-//                 return;
-//             }
-//             Console.WriteLine("No account with the given number is present with us");
-            
-//         }
-
-//         private void PrintAccount(Account account)
-//         {
-//             Console.WriteLine("-----------------------------");
-//             Console.WriteLine(account);
-//             Console.WriteLine("-----------------------------");
+//             var account = GetAccount(key);
+//             if (account == null)
+//                 return null;
+//             _accountMap[key] = item;
+//             return item;
 //         }
 //     }
 // }
-
-
-// -------------------------------------------------------------------------------------------
-
-// using UnderstandingOOPSApp.Interfaces;
-// using UnderstandingOOPSApp.Services;
-
-// namespace UnderstandingOOPSApp
-// {
-//     internal class Program
-//     {
-//         ICustomerInteract customerInteract;
-//         public Program()
-//         {
-//             customerInteract = new CustomerService();
-//         }
-//         void DoBanking()
-//         {
-//             var account = customerInteract.OpensAccount();
-//             Console.WriteLine(account);
-//             Console.WriteLine("Please enter the account you like see");
-//             string accNum = Console.ReadLine()??"";
-//             customerInteract.PrintAccountDetails(accNum);
-            
-//         }
-//         static void Main(string[] args)
-//         {
-//             new Program().DoBanking();
-//         }
-//     }
-// }
-
-
-
-
-// -------------------------------------------------------------------------------------------
-
-
-
-
-
-// -------------------------------------------------------------------------------------------
-
-
-
-
-// -------------------------------------------------------------------------------------------
