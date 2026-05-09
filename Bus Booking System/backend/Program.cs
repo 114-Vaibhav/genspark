@@ -9,7 +9,9 @@ using backend.Services;
 var builder = WebApplication.CreateBuilder(args);
 //Hi changed for check git on mac
 
-var connectionString = "Host=localhost;Port=5432;Database=bus_ticket_booking;Username=postgres;Password=8098";
+var connectionString = "Host=localhost;Port=5432;Database=bus_ticket_booking;Username=vaibhavgupta;Password=8098";
+
+builder.Services.AddScoped<ITripRepository, TripRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
