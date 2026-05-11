@@ -6,17 +6,18 @@ namespace simplenotification
         EmailNotification=2,
         WhatsappNotification=3
     }
-    internal class  Notification
+
+    public class Notification
     {
-        public string message {get; set;}
-        public DateTime sentdate{get; set;}
-        public NotiType NotificationType{get; set;}
+        public string message { get; set; } = string.Empty;
+        public DateTime sentdate { get; set; }
+        public NotiType NotificationType { get; set; }
+        public string SentToName { get; set; } = string.Empty;
+        public string SentToContact { get; set; } = string.Empty;
       
-    public override string ToString()
+        public override string ToString()
         {
-            return $"Message : {message},  : {phone}\n" +
-                $"Email : {email}\n";
+            return $"Type : {NotificationType}\nUser : {SentToName}\nContact : {SentToContact}\nMessage : {message}\nSent Date : {sentdate}\n";
         }
-    
     }
 }

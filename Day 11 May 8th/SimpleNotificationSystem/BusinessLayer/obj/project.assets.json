@@ -1,11 +1,88 @@
 {
   "version": 3,
   "targets": {
-    "net10.0": {}
+    "net10.0": {
+      "DataAccessLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataAccessLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccessLayer.dll": {}
+        }
+      },
+      "Interfaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Interfaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Interfaces.dll": {}
+        }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
+      },
+      "NotificationSenders/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Interfaces": "1.0.0",
+          "Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NotificationSenders.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NotificationSenders.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DataAccessLayer/1.0.0": {
+      "type": "project",
+      "path": "../DataAccessLayer/DataAccessLayer.csproj",
+      "msbuildProject": "../DataAccessLayer/DataAccessLayer.csproj"
+    },
+    "Interfaces/1.0.0": {
+      "type": "project",
+      "path": "../Interfaces/Interfaces.csproj",
+      "msbuildProject": "../Interfaces/Interfaces.csproj"
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../Models/Models.csproj",
+      "msbuildProject": "../Models/Models.csproj"
+    },
+    "NotificationSenders/1.0.0": {
+      "type": "project",
+      "path": "../NotificationSenders/NotificationSenders.csproj",
+      "msbuildProject": "../NotificationSenders/NotificationSenders.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0": []
+    "net10.0": [
+      "DataAccessLayer >= 1.0.0",
+      "Interfaces >= 1.0.0",
+      "Models >= 1.0.0",
+      "NotificationSenders >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/Users/vaibhavgupta/.nuget/packages/": {}
@@ -31,7 +108,20 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/vaibhavgupta/Intern Work/genspark/Day 11 May 8th/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj": {
+              "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 11 May 8th/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj"
+            },
+            "/Users/vaibhavgupta/Intern Work/genspark/Day 11 May 8th/SimpleNotificationSystem/Interfaces/Interfaces.csproj": {
+              "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 11 May 8th/SimpleNotificationSystem/Interfaces/Interfaces.csproj"
+            },
+            "/Users/vaibhavgupta/Intern Work/genspark/Day 11 May 8th/SimpleNotificationSystem/Models/Models.csproj": {
+              "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 11 May 8th/SimpleNotificationSystem/Models/Models.csproj"
+            },
+            "/Users/vaibhavgupta/Intern Work/genspark/Day 11 May 8th/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj": {
+              "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 11 May 8th/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

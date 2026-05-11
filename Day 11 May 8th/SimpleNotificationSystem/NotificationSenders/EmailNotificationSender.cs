@@ -1,10 +1,10 @@
 namespace simplenotification
 {
-    internal class EmailNotification : Notification
+    public class EmailNotificationSender : INotificationSender
     {
-         public EmailNotification()
+        public void Send(User user, Notification notification)
         {
-            NotificationType=NotiType.EmailNotification;
+            Console.WriteLine($"Email notification sent to {user.name} on {user.email}");
         }
     }
 }

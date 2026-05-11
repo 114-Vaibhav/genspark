@@ -6,7 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>  
-<ItemGroup>
-    <ProjectReference Include="SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj" />
+  <ItemGroup>
+    <ProjectReference Include="../BusinessLayer/BusinessLayer.csproj" />
+    <ProjectReference Include="../Models/Models.csproj" />
   </ItemGroup>
 </Project>

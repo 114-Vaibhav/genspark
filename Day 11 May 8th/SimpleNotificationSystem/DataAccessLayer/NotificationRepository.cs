@@ -1,19 +1,22 @@
 
 namespace simplenotification
 {
-    internal class NotificationRepo{
+    public class NotificationRepository
+    {
         private List<Notification> sentnotification;
-        public NotificationRepo()
+
+        public NotificationRepository()
         {
             sentnotification = new List<Notification>();
         }
-        public void saveNotification(Notification note)
+
+        public void SaveNotification(Notification note)
         {
             sentnotification.Add(note);
         }
-        public List<Notification> getAllSentNotification()
+
+        public List<Notification> GetAllSentNotification()
         {
-            
             return sentnotification;
         }
     }

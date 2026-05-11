@@ -1,10 +1,10 @@
 namespace simplenotification
 {
-    internal class SMSNotification : Notification
+    public class SMSNotificationSender : INotificationSender
     {
-         public SMSNotification()
+        public void Send(User user, Notification notification)
         {
-            NotificationType=NotiType.SMSNotification;
+            Console.WriteLine($"SMS notification sent to {user.name} on {user.phone}");
         }
     }
 }

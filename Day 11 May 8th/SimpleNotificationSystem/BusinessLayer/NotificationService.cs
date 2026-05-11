@@ -1,40 +1,34 @@
-using System.Reflection.Metadata;
 using System.Net.Mail;
-using System.Linq;
 namespace simplenotification
 {
-    internal class NotificationService : INotificationInteract
+    public class NotificationService
     {   
-        // List<User> users = new List<User>();
-        Dictionary<int,User> users = new Dictionary<int, User>();
-        Dictionary<string,int> idmapping = new Dictionary<string, int>();
+        private Dictionary<int,User> users = new Dictionary<int, User>();
+        private Dictionary<string,int> idmapping = new Dictionary<string, int>();
+        private NotificationRepository notificationRepository = new NotificationRepository();
 
         public User CreateUser()
         {
-            
             System.Console.WriteLine("Enter the user's name: ");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine() ?? string.Empty;
             System.Console.WriteLine("Enter the email id: ");
             
             string email;
             while (true)
             {
-                email = Console.ReadLine();
-                try
+                email = Console.ReadLine() ?? string.Empty;
+                if (IsValidEmail(email))
                 {
-                    var addr = new MailAddress(email);
                     break;
                 }
-                catch
-                {
-                    Console.WriteLine("Invalid, try again");
-                }
+
+                Console.WriteLine("Invalid, try again");
             }
            System.Console.WriteLine("Enter 10 digit of phone no: ");
             string phone;
             while (true)
             {
-                phone = Console.ReadLine();
+                phone = Console.ReadLine() ?? string.Empty;
 
                 if (phone.Length == 10 && phone.All(char.IsDigit))
                 {
@@ -55,28 +49,57 @@ namespace simplenotification
             users[id+1]=user;
             idmapping[email]=id+1;
             idmapping[phone]=id+1;
-            // users.Add(user);
             PrintUserDetails(user);
             return user;
         } 
+
         public void  SendNotification()
         {
-            Notification noti = createNotification();
-            if (noti.NotificationType == NotiType.SMSNotification)
+            if (users.Count == 0)
             {
-                foreach(var user in users)
-                {
-                    System.Console.WriteLine($"Notification sent to user {user.Value.name} on {user.Value.phone}");
-                }
-            }else 
-            if (noti.NotificationType == NotiType.EmailNotification)
-            {
-                foreach(var user in users)
-                {
-                    System.Console.WriteLine($"Notification sent to user {user.Value.name} on {user.Value.email}");
-                }
+                Console.WriteLine("Add at least one user before sending notification.");
+                return;
             }
 
+            Notification noti = createNotification();
+            INotificationSender sender = GetNotificationSender(noti.NotificationType);
+
+            foreach(var user in users.Values)
+            {
+                if (!CanSendToUser(user, noti))
+                {
+                    continue;
+                }
+
+                var sentNotification = new Notification
+                {
+                    message = noti.message,
+                    NotificationType = noti.NotificationType,
+                    sentdate = DateTime.Now,
+                    SentToName = user.name,
+                    SentToContact = noti.NotificationType == NotiType.SMSNotification ? user.phone : user.email
+                };
+
+                sender.Send(user, sentNotification);
+                notificationRepository.SaveNotification(sentNotification);
+            }
+        }
+
+        public void DisplaySentNotifications()
+        {
+            List<Notification> notifications = notificationRepository.GetAllSentNotification();
+            if (notifications.Count == 0)
+            {
+                Console.WriteLine("No notification sent yet.");
+                return;
+            }
+
+            Console.WriteLine("---------Sent Notifications-----------------");
+            foreach (var notification in notifications)
+            {
+                Console.WriteLine(notification);
+            }
+            Console.WriteLine("---------End-----------------");
         }
 
         public void FindUserByEmail(string email)
@@ -133,34 +156,34 @@ namespace simplenotification
             string newemail;
             string newphone;
             System.Console.WriteLine("Do you want to update name: type yes or no");
-            string inpt = Console.ReadLine();
+            string inpt = Console.ReadLine() ?? string.Empty;
             if (inpt == "yes")
             {
                 System.Console.WriteLine($"Your existing name: {users[id].name}");
                 System.Console.WriteLine("Type your new name: ");
-                newname = Console.ReadLine();
+                newname = Console.ReadLine() ?? string.Empty;
             }else
             {
                 newname=users[id].name;
             }
             System.Console.WriteLine("Do you want to update phone: type yes or no");
-            inpt = Console.ReadLine();
+            inpt = Console.ReadLine() ?? string.Empty;
             if (inpt == "yes")
             {
                 System.Console.WriteLine($"Your existing phone: {users[id].phone}");
                 System.Console.WriteLine("Type your new phone: ");
-                newphone = Console.ReadLine();
+                newphone = Console.ReadLine() ?? string.Empty;
             }else
             {
                 newphone=users[id].phone;
             }
             System.Console.WriteLine("Do you want to update email: type yes or no");
-            inpt = Console.ReadLine();
+            inpt = Console.ReadLine() ?? string.Empty;
             if (inpt == "yes")
             {
                 System.Console.WriteLine($"Your existing email: {users[id].name}");
                 System.Console.WriteLine("Type your new email: ");
-                newemail = Console.ReadLine();
+                newemail = Console.ReadLine() ?? string.Empty;
             }else
             {
                 newemail=users[id].email;
@@ -199,19 +222,98 @@ namespace simplenotification
 
         private Notification createNotification()
         {
-            Notification noti;
             System.Console.WriteLine("select notification type 1 for SMS, 2 for EMail");
             int typeChoice;
-            while(!Int32.TryParse(Console.ReadLine(), out typeChoice) && typeChoice>0 && typeChoice<3)
+            while(!Int32.TryParse(Console.ReadLine(), out typeChoice) || typeChoice < 1 || typeChoice > 2)
+            {
                 System.Console.WriteLine("Try again");
-            if(typeChoice==1) noti = new SMSNotification();
-            else noti = new EmailNotification();
-            System.Console.WriteLine("Type your message: ");
-            string mes = Console.ReadLine();
-            noti.message=mes;
-            noti.sentdate = DateTime.Now;
-            return noti;
+            }
+
+            NotiType notificationType = typeChoice == 1 ? NotiType.SMSNotification : NotiType.EmailNotification;
+            string message = ReadValidMessage(notificationType);
+
+            return new Notification
+            {
+                message = message,
+                NotificationType = notificationType,
+                sentdate = DateTime.Now
+            };
         }
+
+        private string ReadValidMessage(NotiType notificationType)
+        {
+            while (true)
+            {
+                System.Console.WriteLine("Type your message: ");
+                string message = Console.ReadLine() ?? string.Empty;
+
+                if (string.IsNullOrWhiteSpace(message))
+                {
+                    Console.WriteLine("Message should not be empty.");
+                    continue;
+                }
+
+                if (message.Length < 5)
+                {
+                    Console.WriteLine("Message length should be at least 5 characters.");
+                    continue;
+                }
+
+                if (notificationType == NotiType.SMSNotification && message.Length > 160)
+                {
+                    Console.WriteLine("SMS message should not exceed 160 characters.");
+                    continue;
+                }
+
+                return message;
+            }
+        }
+
+        private INotificationSender GetNotificationSender(NotiType notificationType)
+        {
+            if (notificationType == NotiType.SMSNotification)
+            {
+                return new SMSNotificationSender();
+            }
+
+            return new EmailNotificationSender();
+        }
+
+        private bool CanSendToUser(User user, Notification notification)
+        {
+            if (notification.NotificationType == NotiType.EmailNotification && !IsValidEmail(user.email))
+            {
+                Console.WriteLine($"Email notification skipped for {user.name}: invalid email.");
+                return false;
+            }
+
+            if (notification.NotificationType == NotiType.SMSNotification && !IsValidPhone(user.phone))
+            {
+                Console.WriteLine($"SMS notification skipped for {user.name}: invalid phone number.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool IsValidPhone(string phone)
+        {
+            return phone.Length == 10 && phone.All(char.IsDigit);
+        }
+
         private void PrintUserDetails(User user)
         {
             System.Console.WriteLine("---------User Details-----------------");
