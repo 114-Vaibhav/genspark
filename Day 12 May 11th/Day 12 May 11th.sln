@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestADO", "TestADO\TestADO.csproj", "{47D1F83F-3D7A-9827-59B0-00227056051B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47D1F83F-3D7A-9827-59B0-00227056051B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47D1F83F-3D7A-9827-59B0-00227056051B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47D1F83F-3D7A-9827-59B0-00227056051B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47D1F83F-3D7A-9827-59B0-00227056051B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34AD8ACB-89FE-4454-AE78-ED816FF506BE}
+	EndGlobalSection
+EndGlobal
