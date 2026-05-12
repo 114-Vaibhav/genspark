@@ -1,0 +1,12 @@
+The above is the app that we did for the game 
+Now shift the word, score and user details storage to database. 
+The application need not be a multi tier application. Just separate the folders and files.
+Ensure the user logs in before starting the game. 
+We don't need the admin module to add words now. 
+Just player details and scores will do.
+
+
+dotnet add package Npgsql --version 10.0   
+
+
+  

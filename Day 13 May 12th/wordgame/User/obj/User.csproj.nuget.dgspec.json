@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/vaibhavgupta/Intern Work/wordgame/wordgame.csproj": {}
+    "/Users/vaibhavgupta/Intern Work/wordgame/User/User.csproj": {}
   },
   "projects": {
-    "/Users/vaibhavgupta/Intern Work/wordgame/wordgame.csproj": {
+    "/Users/vaibhavgupta/Intern Work/wordgame/User/User.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/wordgame/wordgame.csproj",
-        "projectName": "wordgame",
-        "projectPath": "/Users/vaibhavgupta/Intern Work/wordgame/wordgame.csproj",
+        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/wordgame/User/User.csproj",
+        "projectName": "User",
+        "projectPath": "/Users/vaibhavgupta/Intern Work/wordgame/User/User.csproj",
         "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-        "outputPath": "/Users/vaibhavgupta/Intern Work/wordgame/obj/",
+        "outputPath": "/Users/vaibhavgupta/Intern Work/wordgame/User/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
