@@ -55,6 +55,7 @@ namespace simplenotification
                 connection.Close();
             }
         }
+        
         public User FindUserByEmail(string email)
         {
             User user=null;
