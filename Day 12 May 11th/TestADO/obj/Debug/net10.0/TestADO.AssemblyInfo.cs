@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestADO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5f02730ef61b2d1dbc75647e83927156f5d097a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+773250bd6a4ca6d040df09821ae3cb8f21ba4ef1")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestADO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestADO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
