@@ -1,0 +1,4 @@
+
+dotnet ef dbcontext scaffold "connection-string" Npgsql.EntityFrameworkCore.PostgreSQL
+
+dotnet ef dbcontext scaffold "Host=localhost;Port=5432;Database=tempdvd;Username=vaibhavgupta;Password=8098" Npgsql.EntityFrameworkCore.PostgreSQL -o Models

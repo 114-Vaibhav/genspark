@@ -1,0 +1,13 @@
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/bin/Debug/net10.0/ModelLib.deps.json
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/bin/Debug/net10.0/ModelLib.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/bin/Debug/net10.0/ModelLib.pdb
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/ModelLib.csproj.AssemblyReference.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/ModelLib.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/ModelLib.AssemblyInfoInputs.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/ModelLib.AssemblyInfo.cs
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/ModelLib.csproj.CoreCompileInputs.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/ModelLib.sourcelink.json
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/ModelLib.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/refint/ModelLib.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/ModelLib.pdb
+/Users/vaibhavgupta/Intern Work/genspark/Day 15 May 14th/LibraryManagement/ModelLib/obj/Debug/net10.0/ref/ModelLib.dll
