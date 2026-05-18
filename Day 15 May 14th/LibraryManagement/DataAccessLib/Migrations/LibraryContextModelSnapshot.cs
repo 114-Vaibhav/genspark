@@ -274,9 +274,6 @@ namespace DataAccessLib.Migrations
                     b.Property<int>("MemberRole")
                         .HasColumnType("integer");
 
-                    b.Property<int>("MembershipId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("MembershipTypesId")
                         .HasColumnType("integer");
 

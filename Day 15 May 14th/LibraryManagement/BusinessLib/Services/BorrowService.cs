@@ -14,20 +14,25 @@ namespace librarymanagementsystem.BusinessLib
             fineService = new FineService();
         }
         public void BorrowBook(int userId, int bookId)
-        {
+        {   
+            Console.WriteLine($"userID {userId} and bookId {bookId}");
             var membershipType = borrowRepository.GetMembershipDetailsFromDB(userId);
+            // if(membershipType == null) return;
             int borrowLimit = membershipType.MaxBooksAllowed;
             var activeBorrowing = borrowRepository.GetActiveBorrowingFromDB(userId);
             
            if(CanBorrowBook(userId, bookId) && activeBorrowing.Count < borrowLimit)
             {
                 int borrowDurationDays = membershipType.MaxBorrowDays;
-                DateTime expReturnDate = DateTime.Now.AddDays(borrowDurationDays);
+                DateTime expReturnDate = DateTime.UtcNow.AddDays(borrowDurationDays);
     
                 try
                 {
                     var bookCopyId = borrowRepository.GetAvailableBookCopyIdFromDB(bookId);
-                    borrowRepository.AddBorrowTransactionBookInDB(userId, bookId, bookCopyId, expReturnDate);
+                    if(borrowRepository.AddBorrowTransactionBookInDB(userId, bookId, bookCopyId, expReturnDate))
+                    {
+                        Console.WriteLine($"BookCopyId {bookCopyId} of BookId {bookId} Borrowed Successfully");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -49,7 +54,7 @@ namespace librarymanagementsystem.BusinessLib
 
                 if (activeBorrowing != null)
                 {
-                    DateTime returnDate = DateTime.Now;
+                    DateTime returnDate = DateTime.UtcNow;
                     // This can be enhanced to take user input
                     var returnRules = returnRepository.GetReturnRulesFromDB();
                     var (fineAmount, condition,remarks,noOfMissingPages,isHardCoverMissing) = CalculateFineAndCondition(activeBorrowing, returnRules);
@@ -67,13 +72,14 @@ namespace librarymanagementsystem.BusinessLib
             catch (Exception ex)
             {
                 Console.WriteLine($"Error occurred while returning the book: {ex.Message}");
+                Console.WriteLine($"Error occurred while returning the book: {ex}");
             }
             
         }
         private (int fine,string condition,string remarks,int NoofMissingPages,bool IsHardCoverMissing) CalculateFineAndCondition(BorrowTransactions borrowTransaction, List<Rules> returnRules)
         {
             int fineAmount = 0;
-            DateTime currentDate = DateTime.Now;
+            DateTime currentDate = DateTime.UtcNow;
             string condition ="Good";
             string remarks = null;
             bool isHardCoverMissing = false;
@@ -105,13 +111,13 @@ namespace librarymanagementsystem.BusinessLib
         }
         public void ViewBorrowedBooks(int userId)
         {
-            var borrowedBooks = borrowRepository.GetActiveBorrowingFromDB(userId);
+            var borrowedBooks = borrowRepository.GetActiveBorrowingBooksFromDB(userId);
             if (borrowedBooks != null && borrowedBooks.Count > 0)
             {
                 Console.WriteLine("------------------Borrowed Books---------------------");
-                foreach (var tran in borrowedBooks)
+                foreach (var book in borrowedBooks)
                 {
-                    Console.WriteLine(tran.Book);
+                    Console.WriteLine(book);
                 }
                 Console.WriteLine("---------------------------------------------------");
             }

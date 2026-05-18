@@ -14,12 +14,12 @@ namespace librarymanagementsystem.DataAccessLib
 
         public List<Book> GetAllDamagedAvailableBooksFromDB();
 
-        public Book? FindBookFromDB(string searchText, int searchType);
-
         public bool AddCopyOfBookInDB(int bookId);
 
         public bool UpdateBookConditionInDB(int bookCopyId, int damagePercentage, string damageDescription);
 
         public bool DeleteBookFromDB(int bookId);
+        public List<BookCopies> GetAllCopiesOfBookFromDB(int bookId);
+        public List<Book> FindBooksFromDB(string searchText, int searchType);
     }
 }

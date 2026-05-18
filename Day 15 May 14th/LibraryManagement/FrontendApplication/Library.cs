@@ -1,4 +1,5 @@
 using librarymanagementsystem.BusinessLib;
+using librarymanagementsystem.ModelLib;
 
 namespace librarymanagementsystem.FronendApplication
 {
@@ -10,9 +11,31 @@ namespace librarymanagementsystem.FronendApplication
         private readonly IFineService fineService = new FineService();
         private readonly IReportsService reportService = new ReportsService();
         private InputHandler inputHandler = new InputHandler();
+        private IGeneralService generalService = new GeneralService();
 
         public void AdminMenu()
         {
+            
+            Console.WriteLine("Enter Admin Email: ");
+            string email = Console.ReadLine().ToLower();
+            Console.WriteLine("Enter Admin Password: ");
+            string password = inputHandler.ReadPassword();
+            
+            if(!generalService.AdminLogin(email, password))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid credentials.");
+                Console.ResetColor();
+                return;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Login successful.");
+                Console.ResetColor();
+            }
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.BackgroundColor = ConsoleColor.Black;
             int choice;
 
             do
@@ -24,8 +47,12 @@ namespace librarymanagementsystem.FronendApplication
                 Console.WriteLine("4. Logout");
 
                 Console.Write("Enter choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
-
+                while (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
+                
+                
                 switch (choice)
                 {
                     case 1:
@@ -49,15 +76,34 @@ namespace librarymanagementsystem.FronendApplication
                         break;
                 }
 
-                Console.ReadKey();
+                // Console.ReadKey();
 
             } while (choice != 4);
+            Console.ResetColor();
         }
         public void UserMenu()
         {
-            Console.Write("Enter User Id: ");
-            int userId = Convert.ToInt32(Console.ReadLine());
-
+            Console.WriteLine("Enter User Email: ");
+            string email = Console.ReadLine().ToLower();
+            Console.WriteLine("Enter User Password: ");
+            string password = inputHandler.ReadPassword();
+            User user =generalService.UserLogin(email, password);
+            if(user==null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid credentials.");
+                Console.ResetColor();
+                return;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Login successful.");
+                Console.ResetColor();
+            }
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.BackgroundColor = ConsoleColor.Black;
+            int userId = user.UserId;
             int choice;
 
             do
@@ -70,7 +116,10 @@ namespace librarymanagementsystem.FronendApplication
                 Console.WriteLine("5. Logout");
 
                 Console.Write("Enter choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                while (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
 
                 switch (choice)
                 {
@@ -88,7 +137,6 @@ namespace librarymanagementsystem.FronendApplication
 
                     case 4:
                         userService.ViewPersonalDetails(userId);
-                        userService.ViewMembershipStatus(userId);
                         break;
 
                     case 5:
@@ -99,29 +147,33 @@ namespace librarymanagementsystem.FronendApplication
                         Console.WriteLine("Invalid choice.");
                         break;
                 }
-
-                Console.ReadKey();
+                Console.ResetColor();
+                
 
             } while (choice != 5);
         }
         public void UserManagement()
         {
             int choice;
-
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.BackgroundColor = ConsoleColor.Black;
             do
             {
                 Console.WriteLine("========= USER MANAGEMENT =========");
                 Console.WriteLine("1. Add User");
                 Console.WriteLine("2. View All Users");
                 Console.WriteLine("3. Find User By Id");
-                Console.WriteLine("4. Find User By Contact");
+                Console.WriteLine("4. Find User By Contact(Email/Phone Number)");
                 Console.WriteLine("5. Update Membership");
                 Console.WriteLine("6. Deactivate User");
                 Console.WriteLine("7. Delete User");
                 Console.WriteLine("8. Back");
 
                 Console.Write("Enter choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                while (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
 
                 switch (choice)
                 {
@@ -140,11 +192,12 @@ namespace librarymanagementsystem.FronendApplication
                         break;
 
                     case 4:
+                        Console.Write("Enter your choice 1.Email  2.Phone : ");
+                        int type = Convert.ToInt32(Console.ReadLine());
+
                         Console.Write("Enter Contact: ");
                         string contact = Console.ReadLine();
 
-                        Console.Write("1.Phone  2.Email : ");
-                        int type = Convert.ToInt32(Console.ReadLine());
 
                         userService.FindUserByContact(contact, type);
                         break;
@@ -167,15 +220,16 @@ namespace librarymanagementsystem.FronendApplication
                             Convert.ToInt32(Console.ReadLine()));
                         break;
                 }
-
-                Console.ReadKey();
+                Console.ResetColor();
+                
 
             } while (choice != 8);
         }
         public void BookManagement(bool isAdmin, int userId)
         {
             int choice;
-
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.BackgroundColor = ConsoleColor.Black;
             do
             {
                 Console.WriteLine("========= BOOK MANAGEMENT =========");
@@ -201,14 +255,20 @@ namespace librarymanagementsystem.FronendApplication
                     Console.WriteLine("4. Find Book");
                     Console.WriteLine("5. Back");
                 }
-
-                Console.Write("Enter choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                
+                Console.WriteLine("Enter choice: ");
+                while (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
 
                 if (isAdmin)
                 {
                     switch (choice)
                     {
+                        case 1:
+                            inputHandler.bookCreation();
+                            break;
                         case 2:
                             bookService.ViewAllBooks();
                             break;
@@ -225,6 +285,33 @@ namespace librarymanagementsystem.FronendApplication
                             bookService.ViewAllDamagedAvailableBooks();
                             break;
 
+                        case 6:
+                            Console.WriteLine("Enter your choice 1.Title  2.Author  3.Category  4.Year : ");
+                            int searchType = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("Enter Search Text: ");
+                            string searchText = Console.ReadLine();
+                            bookService.FindBook(searchText,searchType);
+                            break;
+
+                        case 7:
+                            Console.WriteLine("Enter Book Id: ");
+                            int bookId=Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Enter Number of Copies: ");
+                            int noOfCopies=Convert.ToInt32(Console.ReadLine());
+                            bookService.AddCopiesOfBook(bookId,noOfCopies);
+                            break;
+
+                        case 8:
+                            Console.WriteLine("Enter Book Id: ");
+                            bookId=Convert.ToInt32(Console.ReadLine());
+                            bookService.UpdateBookCondition(bookId);
+                            break;
+
+                        case 9:
+                            Console.WriteLine("Enter Book Id: ");
+                            bookId=Convert.ToInt32(Console.ReadLine());
+                            bookService.DeleteBook(bookId);
+                            break;
                         case 10:
                             break;
                     }
@@ -244,13 +331,19 @@ namespace librarymanagementsystem.FronendApplication
                         case 3:
                             bookService.ViewAllDamagedAvailableBooks();
                             break;
-
+                        case 4:
+                            Console.WriteLine("Enter your choice 1.Title  2.Author  3.Category  4.Year : ");
+                            int searchType = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("Enter Search Text: ");
+                            string searchText = Console.ReadLine();
+                            bookService.FindBook(searchText,searchType);
+                            break;
                         case 5:
                             break;
                     }
                 }
 
-                Console.ReadKey();
+                Console.ResetColor();
 
             } while ((isAdmin && choice != 10)
                     || (!isAdmin && choice != 5));
@@ -258,7 +351,8 @@ namespace librarymanagementsystem.FronendApplication
         public void BorrowManagement(int userId)
         {
             int choice;
-
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.BackgroundColor = ConsoleColor.Black;
             do
             {
                 Console.WriteLine("========= BORROW MANAGEMENT =========");
@@ -270,7 +364,10 @@ namespace librarymanagementsystem.FronendApplication
                 Console.WriteLine("6. Back");
 
                 Console.Write("Enter choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                while (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
 
                 switch (choice)
                 {
@@ -301,7 +398,7 @@ namespace librarymanagementsystem.FronendApplication
                         break;
                 }
 
-                Console.ReadKey();
+                Console.ResetColor();
 
             } while (choice != 6);
         }
@@ -309,7 +406,8 @@ namespace librarymanagementsystem.FronendApplication
         public void FineManagement(int userId)
         {
             int choice;
-
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.BackgroundColor = ConsoleColor.Black;
             do
             {
                 Console.WriteLine("========= FINE MANAGEMENT =========");
@@ -317,9 +415,12 @@ namespace librarymanagementsystem.FronendApplication
                 Console.WriteLine("2. Pay Fine");
                 Console.WriteLine("3. View Fine History");
                 Console.WriteLine("4. Back");
-
+                
                 Console.Write("Enter choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                while (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
 
                 switch (choice)
                 {
@@ -336,14 +437,15 @@ namespace librarymanagementsystem.FronendApplication
                         break;
                 }
 
-                Console.ReadKey();
+                Console.ResetColor();
 
             } while (choice != 4);
         }
         public void ReportManagement()
         {
             int choice;
-
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.BackgroundColor = ConsoleColor.Black;
             do
             {
                 Console.WriteLine("========= REPORT MANAGEMENT =========");
@@ -355,9 +457,12 @@ namespace librarymanagementsystem.FronendApplication
                 Console.WriteLine("6. Most Borrowed Books");
                 Console.WriteLine("7. Available Books By Category");
                 Console.WriteLine("8. Back");
-
+                
                 Console.Write("Enter choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                while (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
 
                 switch (choice)
                 {
@@ -390,7 +495,7 @@ namespace librarymanagementsystem.FronendApplication
                         break;
                 }
 
-                Console.ReadKey();
+                Console.ResetColor();
 
             } while (choice != 8);
         }

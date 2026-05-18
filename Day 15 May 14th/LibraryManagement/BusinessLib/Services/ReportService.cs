@@ -75,23 +75,44 @@ namespace librarymanagementsystem.BusinessLib
             Console.WriteLine("---------------------------------------------------");
         }
 
+
         public void generateMostBorrowedBooksReport()
         {
             var mostBorrowedBooks = reportRepository.getMostBorrowedBooksFromDB();
+
             Console.WriteLine("------------------Most Borrowed Books---------------------");
+
+            // Null check
+            if (mostBorrowedBooks == null || !mostBorrowedBooks.Any())
+            {
+                Console.WriteLine("No borrowed books found.");
+                Console.WriteLine("---------------------------------------------------");
+                return;
+            }
+
             foreach (var group in mostBorrowedBooks)
             {
-                Console.WriteLine($"Book: {group.Key}");
-                Console.WriteLine($"Count: {group.Count()}");
+                if (group == null)
+                    continue;
+
+                Console.WriteLine($"Book: {group.Key ?? "Unknown"}");
+
+                var count = group.Count();
+                Console.WriteLine($"Count: {count}");
 
                 foreach (var bookCopy in group)
                 {
-                    Console.WriteLine(bookCopy);
+                    if (bookCopy != null)
+                    {
+                        Console.WriteLine(bookCopy);
+                    }
                 }
+
+                Console.WriteLine();
             }
+
             Console.WriteLine("---------------------------------------------------");
         }
-
         public void generateAvailableBooksByCategoryReport()
         {
             var availableBooksByCategory = reportRepository.getAvailableBooksByCategoryFromDB();

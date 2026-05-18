@@ -25,6 +25,9 @@ namespace librarymanagementsystem.DataAccessLib
                     NoOfMissingPages = noOfMissingPages,
                     IsHardCoverMissing = isHardCoverMissing
                 };
+                db.BookReturnTransactions.Add(returnTransaction);
+                db.SaveChanges();
+                returnTransaction = db.BookReturnTransactions.Where(bt => bt.BorrowTransactionId == BTid).FirstOrDefault();
                 var borrowTransaction = db.BorrowTransactions.Where(bt => bt.BorrowTransactionsId == BTid).FirstOrDefault();
                 var bookId = borrowTransaction.BookId;
                 var bookCopyId = borrowTransaction.BookCopyId;
@@ -63,19 +66,16 @@ namespace librarymanagementsystem.DataAccessLib
                     PaymentStatus = PaymentStatus.Unpaid
                 });
 
-                db.BookReturnTransactions.Add(returnTransaction);
+                
                 db.SaveChanges();
                 transaction.Commit();
                 return true;
-                //BookCopies 
-                //Stock update for book copy
-                //UserStat
-                //Fine Transactions
-                //book return transaction
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error adding return transaction: {ex.Message}");
+                Console.WriteLine($"Error adding return transaction: {ex}");
                 return false;
             }
         }

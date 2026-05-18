@@ -8,14 +8,19 @@ namespace librarymanagementsystem.DataAccessLib
         LibraryContext db = new LibraryContext();
        public bool AddNewUserInDB(User user)
         {
+            var transaction = db.Database.BeginTransaction();
             try
             {
                 db.Users.Add(user);
+                db.UserStats.Add(new UserStat { UserId = user.UserId });
                 db.SaveChanges();
+                transaction.Commit();
                 return true;
             }catch(Exception ex)
             {
                 Console.WriteLine($"Error adding user: {ex.Message}");
+                Console.WriteLine($"Error  users: {ex}");
+                Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
                 return false;
             }
         }
@@ -29,6 +34,8 @@ namespace librarymanagementsystem.DataAccessLib
             }catch(Exception ex)
             {
                 Console.WriteLine($"Error to fetch all users: {ex.Message}");
+          
+
                 return null;
             }
         }
@@ -73,7 +80,7 @@ namespace librarymanagementsystem.DataAccessLib
             try
             {
                 var user = db.Users.FirstOrDefault(u => u.UserId == userId);
-                user.MembershipId = toMembershipId;
+                user.MembershipTypesId = toMembershipId;
                 user.MembershipType = db.MembershipTypes.FirstOrDefault(m => m.MembershipTypesId == toMembershipId);
                 db.SaveChanges();
                 return true;

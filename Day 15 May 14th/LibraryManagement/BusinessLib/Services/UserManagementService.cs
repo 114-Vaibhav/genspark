@@ -10,18 +10,75 @@ namespace librarymanagementsystem.BusinessLib
         {
             userRepository = new UserRepository();
         }
-        public void AddNewUser(string name, string email, string phonenumber, string password, UserRole userRole, int membershipid)
+        // public void AddNewUser(string name, string email, string phonenumber, string password, UserRole userRole, int membershipid)
+        public bool AddNewUser(User user)
         {
-            User user;
-            user = new User();
+            // User user;
+            // user = new User(
+            //     name,email,phonenumber,password,userRole,membershipid);
+            
             try
             {
+                if (ValidateUser(user))
+                {
                 userRepository.AddNewUserInDB(user);
-                Console.WriteLine("User added successfully.");
+                return true;
+                }
+                else
+                {
+                    return  false;
+                }
             }catch(Exception ex)
             {
-                Console.WriteLine($"Error adding user: {ex.Message}");
+                Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+                Console.WriteLine($"Error adding in mgmt user: {ex.Message}");
+
+                return false;
             }
+        }
+       
+        private bool ValidateUser(User user)
+        {
+            bool status = true;
+            if(user.Name == null || user.Name.Trim().Length < 5)
+            {
+                Console.WriteLine("Invalid Name, Name should contain more than 4 characters");
+                status=false;
+                // return false;
+            }
+            if(user.Email == null || !user.Email.Contains("@"))
+            {
+                Console.WriteLine("Invalid Email");
+                status=false;
+                // return false;
+            }
+            if(user.PhoneNumber == null || user.PhoneNumber.Length != 10)
+            {
+                Console.WriteLine("Invalid Phone Number");
+                status=false;
+                // return false;
+            }
+            if(user.Password == null || user.Password.Trim().Length < 5)
+            {
+                Console.WriteLine("Invalid Password, Password should contain more than 4 characters");
+                status=false;
+                // return false;
+            }
+            if(user.MemberRole == null)
+            {
+                Console.WriteLine("Invalid Role");
+                status=false;
+                // return false;
+            }
+            if(user.MembershipTypesId <= 0)
+            {
+                Console.WriteLine("Invalid Membership Id");
+                status=false;
+                // return false;
+            }
+           
+            return status;
+            
         }
 
         public void ViewAllUsers()

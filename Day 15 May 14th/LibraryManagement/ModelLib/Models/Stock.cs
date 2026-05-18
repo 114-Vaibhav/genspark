@@ -15,5 +15,10 @@ namespace librarymanagementsystem.ModelLib
 
         // Navigation
         public Book Book { get; set; }
+
+        override public string ToString()
+        {
+            return $"StockId: {StockId}, BookId: {BookId}, TotalCopies: {TotalCopies}, AvailableCopies: {AvailableCopies}, BorrowedCopies: {BorrowedCopies}, DamagedCopies: {DamagedCopies}";
+        }
     }
 }

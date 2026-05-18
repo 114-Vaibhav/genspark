@@ -12,5 +12,10 @@ namespace librarymanagementsystem.ModelLib
 
         // Navigation
         public ICollection<User> Users { get; set; } = new List<User>();
+
+        override public string ToString()
+        {
+            return $"MembershipTypesId: {MembershipTypesId}, MembershipName: {MembershipName}, MaxBooksAllowed: {MaxBooksAllowed}, MaxBorrowDays: {MaxBorrowDays}";
+        }
     }
 }

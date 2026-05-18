@@ -18,7 +18,7 @@ namespace librarymanagementsystem.BusinessLib
 
         public void AddCopiesOfBook(int bookId, int numberOfCopies);
 
-        public void UpdateBookCondition(int bookCopyId);
+        public void UpdateBookCondition(int bookId);
 
         public void DeleteBook(int bookId);
     }

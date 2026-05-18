@@ -14,5 +14,10 @@ namespace librarymanagementsystem.ModelLib
         public int RulesId { get; set; }
         public  RuleDescription ruleDescription { get; set; }
         public int Value { get; set; }
+
+        override public string ToString()
+        {
+            return $"RulesId: {RulesId}, ruleDescription: {ruleDescription}, Value: {Value}";
+        }
     }
 }

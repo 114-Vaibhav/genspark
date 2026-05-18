@@ -17,5 +17,10 @@ namespace librarymanagementsystem.ModelLib
 
         // Navigation
         public User User { get; set; }
+
+        public override string ToString()
+        {
+            return $"UserId: {UserId}, BooksBorrowed: {BooksBorrowed}, BooksReturned: {BooksReturned}, BooksOverdue: {BooksOverdue}, TotalUnpaidFines: {TotalUnpaidFines}, TotalFinesPaid: {TotalFinesPaid}";
+        }
     }
 }

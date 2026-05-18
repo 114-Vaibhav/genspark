@@ -15,7 +15,10 @@ namespace librarymanagementsystem.ModelLib
 
         public BookCopies BookCopy { get; set; }
         public User User { get; set; }
-
-       
+        public override string ToString()
+        {
+            return $"BorrowTransactionId: {BorrowTransactionsId}, BookId: {BookId}, BookCopyId: {BookCopyId}, UserId: {UserId}, IssueDate: {IssueDate}, ExpReturnDate: {ExpReturnDate}";
+        }
+        
     }
 }

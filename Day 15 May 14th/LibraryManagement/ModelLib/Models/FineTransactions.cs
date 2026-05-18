@@ -28,5 +28,15 @@ namespace librarymanagementsystem.ModelLib
         public BookReturnTransactions BookReturnTransaction { get; set; }
 
         public User User { get; set; }
+
+        public override string ToString()
+        {
+            return $"FineTransactionsId: {FineTransactionsId}, "+
+            $"BookReturnTransactionId: {BookReturnTransactionId}, "+
+            $"UserId: {UserId}, FineAmount: {FineAmount}, "+
+            $"PaymentDate: {PaymentDate}, PaymentMethod: {PaymentMethod}, "+
+            $"PaymentStatus: {PaymentStatus}, PaymentTransactionId: {PaymentTransactionId} ";
+            
+        }
     }
 }

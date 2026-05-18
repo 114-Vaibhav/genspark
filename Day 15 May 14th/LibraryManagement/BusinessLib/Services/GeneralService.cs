@@ -1,15 +1,17 @@
 using System.Data;
 using librarymanagementsystem.DataAccessLib;
+using librarymanagementsystem.ModelLib;
 
 namespace librarymanagementsystem.BusinessLib
 {
     public class GeneralService : IGeneralService
     {
         IGeneralRepository generalRepository;
-    
+        IUserManagementService userManagementService;
         public GeneralService()
         {
             generalRepository = new GeneralRepository();
+            userManagementService = new UserManagementService();
         }
         public void LibraryRules()
         {
@@ -19,14 +21,14 @@ namespace librarymanagementsystem.BusinessLib
                 Console.WriteLine(rule.ruleDescription);
             }
             // public static void DisplaySystemRules(
-            decimal finePerDayLateReturn = 10;
-            decimal finePerMissingPageOnReturn = 20;
-            decimal fineOnMissingHardCover = 150;
-            decimal maxPendingFineAmount = 500;
-            // decimal finePerDayLateReturn = rulesList[0].Value;
-            // decimal finePerMissingPageOnReturn = rulesList[1].Value;
-            // decimal fineOnMissingHardCover = rulesList[2].Value;
-            // decimal maxPendingFineAmount = rulesList[3].Value;
+            // decimal finePerDayLateReturn = 10;
+            // decimal finePerMissingPageOnReturn = 20;
+            // decimal fineOnMissingHardCover = 150;
+            // decimal maxPendingFineAmount = 500;
+            decimal finePerDayLateReturn = rulesList[0].Value;
+            decimal finePerMissingPageOnReturn = rulesList[1].Value;
+            decimal fineOnMissingHardCover = rulesList[2].Value;
+            decimal maxPendingFineAmount = rulesList[3].Value;
             
             Console.Clear();
 
@@ -40,10 +42,10 @@ namespace librarymanagementsystem.BusinessLib
             // Membership rules
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("MEMBERSHIP RULES:");
-
-            Console.WriteLine("Basic Membership   -> Max 2 books, Borrow for 7 days");
-            Console.WriteLine("Student Membership -> Max 3 books, Borrow for 10 days");
-            Console.WriteLine("Premium Membership -> Max 5 books, Borrow for 15 days");
+            userManagementService.printAllMembershipTypes();
+            // Console.WriteLine("Basic Membership   -> Max 2 books, Borrow for 7 days");
+            // Console.WriteLine("Student Membership -> Max 3 books, Borrow for 10 days");
+            // Console.WriteLine("Premium Membership -> Max 5 books, Borrow for 15 days");
             Console.ResetColor();
 
 
@@ -108,7 +110,14 @@ namespace librarymanagementsystem.BusinessLib
 
     
         }
-
+        public User UserLogin(string email, string password)
+        {
+            return generalRepository.UserLogin(email, password);
+        }
+        public bool AdminLogin(string email, string password)
+        {
+            return generalRepository.AdminLogin(email, password);
+        }
         
     }
 }

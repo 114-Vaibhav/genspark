@@ -17,6 +17,7 @@ namespace librarymanagementsystem.DataAccessLib
         
         public List<Book> GetAllBorrowedBooksFromDB();
         public List<BorrowTransactions> GetActiveBorrowingFromDB(int userId);
+        public List<Book> GetActiveBorrowingBooksFromDB(int userId);
         public int GetAvailableBookCopyIdFromDB(int bookId);
     }
 }

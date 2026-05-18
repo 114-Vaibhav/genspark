@@ -37,20 +37,20 @@ namespace librarymanagementsystem.DataAccessLib
             catch (Exception ex)
             {
                 Console.WriteLine($"Error adding borrow transaction: {ex.Message}");
+                Console.WriteLine($"Error adding borrow transaction: {ex}");
                 transaction.Rollback();
                 return false;
             }
         }
-
-       
-
 
         public MembershipTypes GetMembershipDetailsFromDB(int userId)
         {
             try
             {
                 var user = db.Users.FirstOrDefault(m => m.UserId == userId);
-                return user.MembershipType;
+                var membershipId = user.MembershipTypesId;
+                var membershipDetails = db.MembershipTypes.FirstOrDefault(m => m.MembershipTypesId == membershipId);
+                return membershipDetails;
             }
             catch (Exception ex)
             {
@@ -171,6 +171,40 @@ namespace librarymanagementsystem.DataAccessLib
             }
         }
     
+        public List<Book> GetActiveBorrowingBooksFromDB(int userId)
+        {
+            try
+            {
+                var activeBorrowing = db.BorrowTransactions
+                    .Where(bt => bt.UserId == userId && bt.ExpReturnDate >= DateTime.UtcNow)
+                    .ToList();
+                List<Book> books = new List<Book>();
+                foreach(var bt in activeBorrowing)
+                {
+                    Book book = db.Books.Where(b => b.BookId == bt.BookId).FirstOrDefault();
+                    books.Add(book);
+                }
+                
+                if (books == null || books.Count == 0)
+                {
+                    Console.WriteLine($"No active borrowing found for user with ID {userId}.");
+                    return new List<Book>();
+                }
+                else if (activeBorrowing.Count > 0)
+                {
+                    return books;
+                }
+                else
+                {
+                    throw new Exception("Unexpected error occurred while retrieving active borrowing.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving active borrowing: {ex.Message}");
+                return new List<Book>();
+            }
+        }
         public List<BorrowTransactions> GetActiveBorrowingFromDB(int userId)
         {
             try
@@ -178,7 +212,8 @@ namespace librarymanagementsystem.DataAccessLib
                 var activeBorrowing = db.BorrowTransactions
                     .Where(bt => bt.UserId == userId && bt.ExpReturnDate >= DateTime.UtcNow)
                     .ToList();
-
+                
+                
                 if (activeBorrowing == null || activeBorrowing.Count == 0)
                 {
                     Console.WriteLine($"No active borrowing found for user with ID {userId}.");

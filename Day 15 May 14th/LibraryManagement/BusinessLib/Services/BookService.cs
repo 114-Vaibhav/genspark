@@ -13,13 +13,20 @@ namespace librarymanagementsystem.BusinessLib
         {
             try
             {
-                if(bookRepository.AddNewBookInDB(book))
+                if (validateBook(book))
                 {
-                    Console.WriteLine("Book added successfully.");
+                    if(bookRepository.AddNewBookInDB(book))
+                    {
+                        Console.WriteLine("Book added successfully.");
+                    }
+                    else
+                    {
+                        throw new Exception("Failed to add new book. ");
+                    }
                 }
                 else
                 {
-                    throw new Exception("Failed to add new book. ");
+                    return;
                 }
             }catch(Exception ex)
             {
@@ -27,7 +34,35 @@ namespace librarymanagementsystem.BusinessLib
             }
             
         }
-
+        private bool validateBook(Book book)
+        {
+            bool valid=true;
+            if (book.Title.Length < 3)
+            {
+                Console.WriteLine("Title should be at least 3 characters long.");
+                // return false;
+                valid=false;
+            }
+            if (book.Author.Length < 3)
+            {
+                Console.WriteLine("Author name should be at least 3 characters long.");
+                valid=false;
+                // return false;
+            }
+            if (book.Category.Length < 3)
+            {
+                Console.WriteLine("Category should be at least 3 characters long.");
+                valid=false;
+                // return false;
+            }
+            if (book.PublicationYear < 1800 || book.PublicationYear > DateTime.UtcNow.Year)
+            {
+                Console.WriteLine("Invalid publication year.");
+                valid=false;
+                // return false;
+            }
+            return valid;
+        }
         public void ViewAllBooks()
         {
             try
@@ -132,13 +167,18 @@ namespace librarymanagementsystem.BusinessLib
         {
             try
             {
-                var book = bookRepository.FindBookFromDB(searchText, searchType);
-                if(book == null)
+                var books = bookRepository.FindBooksFromDB(searchText, searchType);
+                if(books.Count == null)
                 {
                     Console.WriteLine("No book found matching the search criteria.");
                     
                 }else {
-                    Console.WriteLine(book);
+                    Console.WriteLine("-----------------Found Books in the library--------------------");
+                    foreach(var book in books)
+                    {
+                        Console.WriteLine(book);
+                    }
+                    Console.WriteLine("------------------------End---------------------------------");
                 }
             }
             catch(Exception ex)
@@ -161,8 +201,22 @@ namespace librarymanagementsystem.BusinessLib
             Console.WriteLine($"{numberOfCopies} copies of the book have been added successfully.");
         }
 
-        public void UpdateBookCondition(int bookCopyId)
+        public void UpdateBookCondition(int bookId)
         {
+                Console.WriteLine("-----Here are available copies of given book----");
+                var availableCopies = bookRepository.GetAllCopiesOfBookFromDB(bookId);
+
+                foreach(var copy in availableCopies)
+                {
+                    Console.WriteLine(copy);
+                }
+                Console.WriteLine("------------------------End---------------------------------");
+                Console.WriteLine("Enter book copy id: ");
+                int bookCopyId;
+                while(!int.TryParse(Console.ReadLine(), out bookCopyId))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number for book copy id.");
+                }
                 Console.WriteLine("Enter damage percentage (0-100): ");
                 int damagePercentage;
                 while(!int.TryParse(Console.ReadLine(), out damagePercentage) || damagePercentage < 0 || damagePercentage > 100)

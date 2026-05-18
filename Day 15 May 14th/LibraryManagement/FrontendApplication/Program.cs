@@ -16,19 +16,24 @@ namespace librarymanagementsystem.FronendApplication
             do
             {
                 
-
+                Console.ForegroundColor = ConsoleColor.White;
+                
                 Console.WriteLine("========= LIBRARY SYSTEM =========");
                 Console.WriteLine("1. Admin Login");
                 Console.WriteLine("2. User Login");
                 Console.WriteLine("3. Exit");
 
                 Console.Write("Enter choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                while (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
 
                 switch (choice)
                 {
                     case 1:
                         library.AdminMenu();
+                        // Console.WriteLine("Enter your next ch");
                         break;
 
                     case 2:
@@ -45,6 +50,7 @@ namespace librarymanagementsystem.FronendApplication
                 }
 
             } while (choice != 3);
+            Console.ResetColor();
         }
     }
 }

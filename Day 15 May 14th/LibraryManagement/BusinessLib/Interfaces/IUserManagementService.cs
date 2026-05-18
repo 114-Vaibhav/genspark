@@ -4,8 +4,7 @@ namespace librarymanagementsystem.BusinessLib
 {
     public interface IUserManagementService
     {
-        void AddNewUser(User user);
-
+        bool AddNewUser(User user); 
         void ViewAllUsers();
 
         void FindUserById(int userId);
@@ -20,6 +19,7 @@ namespace librarymanagementsystem.BusinessLib
 
         void ViewMembershipStatus(int userId);
         void DeleteUser(int userId);
+        void printAllMembershipTypes();
 
     }
 }

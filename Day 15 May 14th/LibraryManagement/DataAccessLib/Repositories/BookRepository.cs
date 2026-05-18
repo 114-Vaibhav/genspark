@@ -1,4 +1,5 @@
 using librarymanagementsystem.ModelLib;
+using Microsoft.EntityFrameworkCore;
 // using System;.Collections.Generic;
 // using System.Linq;
 // using System.Text;
@@ -15,10 +16,13 @@ namespace librarymanagementsystem.DataAccessLib
         }
          public bool AddNewBookInDB(Book book)
         {
+            var transaction = db.Database.BeginTransaction();
             try
             {
                 db.Books.Add(book);
+                db.Stocks.Add(new Stock { BookId = book.BookId });
                 db.SaveChanges();
+                transaction.Commit();
                 if(book.BookId > 0)
                 {
                     return true;
@@ -30,6 +34,7 @@ namespace librarymanagementsystem.DataAccessLib
             }catch(Exception ex)
             {
                 Console.WriteLine($"Error adding book: {ex.Message}");
+                transaction.Rollback();
                 return false;
             }
         }
@@ -127,52 +132,62 @@ namespace librarymanagementsystem.DataAccessLib
             }
         }
 
-        public Book? FindBookFromDB(string searchText, int searchType)
+        public List<Book> FindBooksFromDB(string searchText, int searchType)
         {
             try
             {
-                Book? book = null;
-                switch(searchType)
+                if (string.IsNullOrWhiteSpace(searchText))
+                    return new List<Book>();
+
+                searchText = searchText.Trim();
+
+                IQueryable<Book> query = db.Books;
+
+                switch (searchType)
                 {
-                    case 1:
-                        book = db.Books.FirstOrDefault(b => b.Title.ToLower() == searchText.ToLower());
+                    case 1: // Title
+                        query = query.Where(b =>
+                            EF.Functions.ILike(b.Title, $"%{searchText}%"));
                         break;
-                    case 2:
-                        book = db.Books.FirstOrDefault(b => b.Author.ToLower() == searchText.ToLower());
+
+                    case 2: // Author
+                        query = query.Where(b =>
+                            EF.Functions.ILike(b.Author, $"%{searchText}%"));
                         break;
-                    case 3:
-                        book = db.Books.FirstOrDefault(b => b.Category.ToLower() == searchText.ToLower());
+
+                    case 3: // Category
+                        query = query.Where(b =>
+                            EF.Functions.ILike(b.Category, $"%{searchText}%"));
                         break;
+
                     default:
-                        Console.WriteLine("Invalid search type. Please use 1 for Title, 2 for Author, or 3 for Category.");
-                        return null;
+                        Console.WriteLine("Invalid search type.");
+                        return new List<Book>();
                 }
-                if(book == null)
-                {
-                    Console.WriteLine("No book found matching the search criteria.");
-                    return null;
-                }else {
-                    return book;
-                }
+
+                return query.ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine($"Error finding book: {ex.Message}");
-                return null;
+                Console.WriteLine($"Error finding books: {ex.Message}");
+                return new List<Book>();
             }
         }
-
         public bool AddCopyOfBookInDB(int bookId)
         {
+            var transaction = db.Database.BeginTransaction();
             try
             {
                db.BookCopies.Add(new BookCopies { BookId = bookId });
+               db.Stocks.Where(s => s.BookId == bookId).FirstOrDefault().AvailableCopies += 1;
                db.SaveChanges();
+               transaction.Commit();
                return true;
             }
             catch(Exception ex)
             {
                 Console.WriteLine($"Error adding copy of book: {ex.Message}");
+                transaction.Rollback();
                 return false;
             }
 
@@ -237,6 +252,28 @@ namespace librarymanagementsystem.DataAccessLib
             {
                 Console.WriteLine($"Error deleting book: {ex.Message}");
                 return false;
+            }
+        }
+        public List<BookCopies> GetAllCopiesOfBookFromDB(int bookId)
+        {
+            try
+            {
+                var bookCopies = db.BookCopies.Where(bc => bc.BookId == bookId).ToList();
+                if(bookCopies == null || bookCopies.Count == 0)
+                {
+                    Console.WriteLine("No book copies found in the database.");
+                    return new List<BookCopies>();
+                }else if(bookCopies.Count > 0)
+                {
+                    return bookCopies;
+                }else {
+                    throw new Exception("Unexpected error occurred while retrieving book copies.");
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error retrieving book copies: {ex.Message}");
+                return new List<BookCopies>();
             }
         }
     }

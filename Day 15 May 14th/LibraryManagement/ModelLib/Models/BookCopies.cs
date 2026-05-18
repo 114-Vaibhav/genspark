@@ -24,5 +24,13 @@ namespace librarymanagementsystem.ModelLib
 
         // Navigation
         public Book Book { get; set; }
+
+
+        public override string ToString()
+        {   
+            
+            return $"BookCopyId: {BookCopiesId}, BookId: {BookId},  BookCopyStatus: {Status}, DamagePercentage: {DamagePercentage}, DamageDescription: {DamageDescription}";
+        }
+
     }
 }
