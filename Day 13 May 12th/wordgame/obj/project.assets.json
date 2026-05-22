@@ -190,11 +190,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/vaibhavgupta/Intern Work/wordgame/wordgame.csproj",
+      "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 13 May 12th/wordgame/wordgame.csproj",
       "projectName": "wordgame",
-      "projectPath": "/Users/vaibhavgupta/Intern Work/wordgame/wordgame.csproj",
+      "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 13 May 12th/wordgame/wordgame.csproj",
       "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-      "outputPath": "/Users/vaibhavgupta/Intern Work/wordgame/obj/",
+      "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 13 May 12th/wordgame/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"

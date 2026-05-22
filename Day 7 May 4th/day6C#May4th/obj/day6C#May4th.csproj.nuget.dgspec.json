@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/day6C#May4th.csproj": {}
+    "/Users/vaibhavgupta/Intern Work/genspark/Day 7 May 4th/day6C#May4th/day6C#May4th.csproj": {}
   },
   "projects": {
-    "/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/day6C#May4th.csproj": {
+    "/Users/vaibhavgupta/Intern Work/genspark/Day 7 May 4th/day6C#May4th/day6C#May4th.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/day6C#May4th.csproj",
+        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 7 May 4th/day6C#May4th/day6C#May4th.csproj",
         "projectName": "day6C#May4th",
-        "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/day6C#May4th.csproj",
+        "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 7 May 4th/day6C#May4th/day6C#May4th.csproj",
         "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-        "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 1 May 4th/day6C#May4th/obj/",
+        "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 7 May 4th/day6C#May4th/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"

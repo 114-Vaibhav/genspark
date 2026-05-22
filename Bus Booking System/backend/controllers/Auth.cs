@@ -27,6 +27,7 @@ namespace backend.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             Console.WriteLine($"[Auth/Register] Request received for email={request.Email}, role={request.Role}");
+            
             var normalizedRole = string.IsNullOrWhiteSpace(request.Role) ? "User" : request.Role.Trim();
             if (normalizedRole != "User" && normalizedRole != "Operator")
                 return BadRequest("Only User or Operator registration is allowed");

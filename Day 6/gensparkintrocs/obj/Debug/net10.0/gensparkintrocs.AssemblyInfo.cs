@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("gensparkintrocs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19fa5fa1e550eede0b7f609560a5df5a52474a45")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c18e477eb5bdd54b4201964705c770772e8804b6")]
 [assembly: System.Reflection.AssemblyProductAttribute("gensparkintrocs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("gensparkintrocs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

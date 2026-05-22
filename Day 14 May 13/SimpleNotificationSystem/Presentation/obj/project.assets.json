@@ -3674,11 +3674,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Presentation/Presentation.csproj",
+      "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Presentation/Presentation.csproj",
       "projectName": "Presentation",
-      "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Presentation/Presentation.csproj",
+      "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Presentation/Presentation.csproj",
       "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-      "outputPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Presentation/obj/",
+      "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Presentation/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
@@ -3693,11 +3693,11 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj": {
-              "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj"
+            "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj": {
+              "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj"
             },
-            "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj": {
-              "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj"
+            "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj": {
+              "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj"
             }
           }
         }

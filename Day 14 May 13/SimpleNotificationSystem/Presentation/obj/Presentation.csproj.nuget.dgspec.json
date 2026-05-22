@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Presentation/Presentation.csproj": {}
+    "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Presentation/Presentation.csproj": {}
   },
   "projects": {
-    "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj": {
+    "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj",
+        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj",
+        "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj",
         "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-        "outputPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/BusinessLayer/obj/",
+        "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/BusinessLayer/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
@@ -26,17 +26,17 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj"
               },
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Interfaces/Interfaces.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Interfaces/Interfaces.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Interfaces/Interfaces.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Interfaces/Interfaces.csproj"
               },
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj"
               },
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj"
               }
             }
           }
@@ -350,14 +350,14 @@
         }
       }
     },
-    "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj": {
+    "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj",
+        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj",
         "projectName": "DataAccessLayer",
-        "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj",
+        "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/DataAccessLayer/DataAccessLayer.csproj",
         "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-        "outputPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/DataAccessLayer/obj/",
+        "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/DataAccessLayer/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
@@ -372,8 +372,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj"
               }
             }
           }
@@ -707,14 +707,14 @@
         }
       }
     },
-    "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Interfaces/Interfaces.csproj": {
+    "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Interfaces/Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Interfaces/Interfaces.csproj",
+        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Interfaces/Interfaces.csproj",
         "projectName": "Interfaces",
-        "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Interfaces/Interfaces.csproj",
+        "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Interfaces/Interfaces.csproj",
         "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-        "outputPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Interfaces/obj/",
+        "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Interfaces/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
@@ -729,8 +729,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj"
               }
             }
           }
@@ -1044,14 +1044,14 @@
         }
       }
     },
-    "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj": {
+    "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj",
+        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj",
         "projectName": "Models",
-        "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj",
+        "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj",
         "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-        "outputPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/obj/",
+        "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
@@ -1377,14 +1377,14 @@
         }
       }
     },
-    "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj": {
+    "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj",
+        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj",
         "projectName": "NotificationSenders",
-        "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj",
+        "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/NotificationSenders/NotificationSenders.csproj",
         "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-        "outputPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/NotificationSenders/obj/",
+        "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/NotificationSenders/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
@@ -1399,11 +1399,11 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Interfaces/Interfaces.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Interfaces/Interfaces.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Interfaces/Interfaces.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Interfaces/Interfaces.csproj"
               },
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj"
               }
             }
           }
@@ -1717,14 +1717,14 @@
         }
       }
     },
-    "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Presentation/Presentation.csproj": {
+    "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Presentation/Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Presentation/Presentation.csproj",
+        "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Presentation/Presentation.csproj",
         "projectName": "Presentation",
-        "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Presentation/Presentation.csproj",
+        "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Presentation/Presentation.csproj",
         "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-        "outputPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Presentation/obj/",
+        "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Presentation/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
@@ -1739,11 +1739,11 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/BusinessLayer/BusinessLayer.csproj"
               },
-              "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj": {
-                "projectPath": "/Users/vaibhavgupta/Intern Work/SimpleNotificationSystem/Models/Models.csproj"
+              "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj": {
+                "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 14 May 13/SimpleNotificationSystem/Models/Models.csproj"
               }
             }
           }
