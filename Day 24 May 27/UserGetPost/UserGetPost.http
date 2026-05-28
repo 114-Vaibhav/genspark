@@ -1,0 +1,6 @@
+@UserGetPost_HostAddress = http://localhost:5119
+
+GET {{UserGetPost_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
