@@ -1,0 +1,7 @@
+/Users/vaibhavgupta/Intern Work/genspark/Day 26 May 29/BankingAPISolution/BankingApiTest/bin/Debug/net10.0/CoverletSourceRootsMapping_BankingApiTest
+/Users/vaibhavgupta/Intern Work/genspark/Day 26 May 29/BankingAPISolution/BankingApiTest/obj/Debug/net10.0/BankingApiTest.csproj.AssemblyReference.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 26 May 29/BankingAPISolution/BankingApiTest/obj/Debug/net10.0/BankingApiTest.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vaibhavgupta/Intern Work/genspark/Day 26 May 29/BankingAPISolution/BankingApiTest/obj/Debug/net10.0/BankingApiTest.AssemblyInfoInputs.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 26 May 29/BankingAPISolution/BankingApiTest/obj/Debug/net10.0/BankingApiTest.AssemblyInfo.cs
+/Users/vaibhavgupta/Intern Work/genspark/Day 26 May 29/BankingAPISolution/BankingApiTest/obj/Debug/net10.0/BankingApiTest.csproj.CoreCompileInputs.cache
+/Users/vaibhavgupta/Intern Work/genspark/Day 26 May 29/BankingAPISolution/BankingApiTest/obj/Debug/net10.0/BankingApiTest.sourcelink.json

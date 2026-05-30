@@ -114,3 +114,14 @@
 /Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/obj/Debug/net10.0/BankingAPI.pdb
 /Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/obj/Debug/net10.0/BankingAPI.genruntimeconfig.cache
 /Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/obj/Debug/net10.0/ref/BankingAPI.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/BankingAPI.staticwebassets.runtime.json
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/Serilog.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/Serilog.AspNetCore.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/Serilog.Extensions.Hosting.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/Serilog.Extensions.Logging.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/Serilog.Formatting.Compact.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/Serilog.Settings.Configuration.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/Serilog.Sinks.Console.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/Serilog.Sinks.Debug.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/bin/Debug/net10.0/Serilog.Sinks.File.dll
+/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/obj/Debug/net10.0/compressed/4ijk9r5p33-{0}-wf4olyp7a6-wf4olyp7a6.gz

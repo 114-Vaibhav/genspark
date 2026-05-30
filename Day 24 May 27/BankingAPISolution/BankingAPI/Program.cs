@@ -1,5 +1,7 @@
+using BankingAPI;
 using BankingAPI.Contexts;
 using BankingAPI.Interfaces;
+using BankingAPI.Middlewares;
 using BankingAPI.Models;
 using BankingAPI.Repositories;
 using BankingAPI.Services;
@@ -7,10 +9,23 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Security.AccessControl;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+Log.Logger = new LoggerConfiguration()
+.ReadFrom.Configuration(builder.Configuration)
+.Enrich.FromLogContext()
+.WriteTo.Console()
+.WriteTo.File("logs/MyAppLog.txt")
+.CreateLogger();
+
+builder.Host.UseSerilog();
+
+
 
 // Add services to the container.
 
@@ -42,6 +57,20 @@ builder.Services.AddSwaggerGen(opt =>
             },
             new string[]{}
         }
+    });
+});
+
+
+builder.Services.AddSignalR();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:7163")
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();// Allow credentials for SignalR
     });
 });
 
@@ -105,6 +134,16 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.UseCors();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+app.UseStaticFiles();
+
 app.MapControllers();
+
+
+
+app.MapHub<ChatHub>("/chathub");
 
 app.Run();
