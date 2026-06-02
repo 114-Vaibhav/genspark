@@ -477,3 +477,14 @@ VALUES ('20260528064732_InitialCreate', '8.0.27');
 2026-05-28 12:59:45.855 +05:30 [INF] Executing endpoint '/chathub'
 2026-05-28 12:59:45.938 +05:30 [INF] Executed endpoint '/chathub'
 2026-05-28 12:59:45.962 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5091/chathub?id=DwqVYFwOhuNlJyIFLE7joA - 101 null null 2274022.1031ms
+2026-06-02 15:19:54.958 +05:30 [INF] User profile is available. Using '/Users/vaibhavgupta/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-06-02 15:19:55.116 +05:30 [INF] Now listening on: http://localhost:5091
+2026-06-02 15:19:55.118 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-02 15:19:55.143 +05:30 [INF] Hosting environment: Development
+2026-06-02 15:19:55.145 +05:30 [INF] Content root path: /Users/vaibhavgupta/Intern Work/genspark/Day 25 May 28/BankingAPISolution/BankingAPI
+2026-06-02 15:20:00.200 +05:30 [INF] Application is shutting down...
+2026-06-02 15:20:10.232 +05:30 [INF] User profile is available. Using '/Users/vaibhavgupta/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-06-02 15:20:10.353 +05:30 [INF] Now listening on: http://localhost:5091
+2026-06-02 15:20:10.354 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-02 15:20:10.354 +05:30 [INF] Hosting environment: Development
+2026-06-02 15:20:10.355 +05:30 [INF] Content root path: /Users/vaibhavgupta/Intern Work/genspark/Day 25 May 28/BankingAPISolution/BankingAPI

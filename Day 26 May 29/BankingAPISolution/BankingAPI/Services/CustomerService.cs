@@ -105,6 +105,7 @@ namespace BankingAPI.Services
                 Phone = request.Phone,
                 Name = request.Name,
                 DateOfBirth = request.DateOfBirth,
+                
                 Status = "Active"
             };
         }
