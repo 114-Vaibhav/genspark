@@ -3211,11 +3211,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingApiTest/BankingApiTest.csproj",
+      "projectUniqueName": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingApiTest/BankingApiTest.csproj",
       "projectName": "BankingApiTest",
-      "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingApiTest/BankingApiTest.csproj",
+      "projectPath": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingApiTest/BankingApiTest.csproj",
       "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-      "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingApiTest/obj/",
+      "outputPath": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingApiTest/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
@@ -3230,8 +3230,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj": {
-              "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj"
+            "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj": {
+              "projectPath": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj"
             }
           }
         }

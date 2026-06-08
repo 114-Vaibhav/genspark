@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7DxnU6KZvMk=",
+  "dgSpecHash": "wZyF/GbNMZ4=",
   "success": true,
-  "projectFilePath": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
+  "projectFilePath": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
   "expectedPackageFiles": [
     "/Users/vaibhavgupta/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/vaibhavgupta/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/8.0.27/microsoft.aspnetcore.authentication.jwtbearer.8.0.27.nupkg.sha512",
@@ -58,9 +58,9 @@
       "code": "NU1510",
       "level": "Warning",
       "message": "PackageReference Microsoft.AspNetCore.SignalR will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
+      "projectPath": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
       "warningLevel": 1,
-      "filePath": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
+      "filePath": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
       "libraryId": "Microsoft.AspNetCore.SignalR",
       "targetGraphs": [
         "net10.0"

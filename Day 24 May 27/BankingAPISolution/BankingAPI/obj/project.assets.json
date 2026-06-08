@@ -2500,11 +2500,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
+      "projectUniqueName": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
       "projectName": "BankingAPI",
-      "projectPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
+      "projectPath": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/BankingAPI.csproj",
       "packagesPath": "/Users/vaibhavgupta/.nuget/packages/",
-      "outputPath": "/Users/vaibhavgupta/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/obj/",
+      "outputPath": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 24 May 27/BankingAPISolution/BankingAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/vaibhavgupta/.nuget/NuGet/NuGet.Config"
