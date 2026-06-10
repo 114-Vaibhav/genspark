@@ -1,0 +1,76 @@
+
+<section class="min-h-screen bg-gray-100 p-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <h1 class="text-4xl font-bold text-center text-blue-600 mb-10">
+            Our Products
+        </h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+            @for (product of products(); track product.id) {
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 flex flex-col">
+
+                    <img
+                        [src]="product.thumbnail"
+                        [alt]="product.title"
+                        class="w-full h-56 object-cover"
+                    >
+
+                    <div class="p-5 flex flex-col flex-grow">
+
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">
+                            {{ product.title }}
+                        </h2>
+
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                            {{ product.description }}
+                        </p>
+
+                        <div class="space-y-2 mb-6">
+
+                            <p class="text-lg font-semibold text-green-600">
+                                ₹{{ product.price }}
+                            </p>
+
+                            <p class="text-sm text-gray-500">
+                                Stock Available:
+                                <span class="font-medium">
+                                    {{ product.stock }}
+                                </span>
+                            </p>
+
+                            <p class="text-sm text-gray-500">
+                                Product ID:
+                                <span class="font-medium">
+                                    {{ product.id }}
+                                </span>
+                            </p>
+
+                        </div>
+
+                        <div class="mt-auto">
+
+                            <button
+                                
+                                [routerLink]="['../product-details', product.id]"
+                                class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200"
+                            >
+                                View Details
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+
+</section>

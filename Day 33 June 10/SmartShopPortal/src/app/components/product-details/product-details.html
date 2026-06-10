@@ -1,0 +1,101 @@
+<section class="min-h-screen bg-gray-100 py-10 px-4">
+
+    @if (product(); as p) {
+
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+
+                <!-- Product Image -->
+                <div class="p-8 flex items-center justify-center bg-gray-50">
+
+                    <img
+                        [src]="p.thumbnail"
+                        [alt]="p.title"
+                        class="w-full max-w-sm rounded-xl object-cover"
+                    >
+
+                </div>
+
+                <!-- Product Details -->
+                <div class="p-8">
+
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                        {{ p.title }}
+                    </h1>
+
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        {{ p.description }}
+                    </p>
+
+                    <div class="space-y-4">
+
+                        <div class="flex justify-between border-b pb-3">
+                            <span class="font-semibold text-gray-600">
+                                Price
+                            </span>
+
+                            <span class="text-green-600 text-xl font-bold">
+                                ₹{{ p.price }}
+                            </span>
+                        </div>
+
+                        <div class="flex justify-between border-b pb-3">
+                            <span class="font-semibold text-gray-600">
+                                Stock
+                            </span>
+
+                            <span class="text-gray-800">
+                                {{ p.stock }}
+                            </span>
+                        </div>
+
+                        <div class="flex justify-between border-b pb-3">
+                            <span class="font-semibold text-gray-600">
+                                Product ID
+                            </span>
+
+                            <span class="text-gray-800">
+                                {{ p.id }}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-8">
+
+                        <button
+                            class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    } @else {
+
+        <div class="flex justify-center items-center h-96">
+
+            <div class="text-center">
+
+                <div
+                    class="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent mx-auto">
+                </div>
+
+                <p class="mt-4 text-gray-600 text-lg">
+                    Loading product details...
+                </p>
+
+            </div>
+
+        </div>
+
+    }
+
+</section>
