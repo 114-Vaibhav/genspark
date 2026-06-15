@@ -1,0 +1,66 @@
+# FUNCTIONAL REQUIREMENTS
+## Must Have (MVP)
+*   Modern, eye-catching homepage design following latest trends.
+*   Mobile-first responsive design across all pages.
+*   Product catalog with filtering by price, category, color, and size.
+*   Functional and robust product search capability.
+*   Shopping cart functionality.
+*   User accounts with customer registration and order history viewing.
+*   Stripe payment integration supporting US and Canadian currencies.
+*   Apple Pay and Google Pay integration.
+*   Admin dashboard for inventory management, order viewing, and basic reports.
+*   Data export functionality (e.g., to Excel) from the Admin Dashboard.
+*   SEO optimization for keywords like "luxury home furniture" and "modern dining chairs".
+*   Integration with existing warehouse system for automatic inventory updates.
+*   Documentation and training for site maintenance.
+*   Basic lead capture for email list building (e.g., newsletter signup).
+
+## Should Have
+*   Save for later functionality within the shopping cart.
+*   Capability for future expansion to handle multiple currencies beyond US and Canada.
+*   Real-time analytics in the Admin Dashboard (conditional on not impacting performance).
+
+## Could Have
+*   Wishlist feature for users.
+*   Live chat support integration.
+*   Ability to gift products to friends.
+
+# NON-FUNCTIONAL REQUIREMENTS
+## Performance
+*   Homepage load time under 2 seconds on 4G.
+*   Optimal performance and user experience on mobile devices.
+*   Overall fast site loading and responsiveness.
+
+## Security
+*   PCI DSS compliance for payment processing.
+*   GDPR compliance for European customers.
+*   DDoS protection.
+*   Secure handling of user data and accounts.
+
+## Scalability
+*   Support for current traffic (50k unique visitors/month) and anticipated growth (20% conversion boost).
+*   Architectural flexibility to accommodate future feature expansion (e.g., multi-currency).
+
+# TECHNICAL CONSTRAINTS & ASSUMPTIONS
+*   **Budget:** Approximately $50,000.
+*   **Timeline:** 3 months for initial launch.
+*   **Payment Gateway:** Must integrate with existing Stripe account.
+*   **Existing System Integration:** Requires integration with an unspecified warehouse system for inventory.
+*   **Assumption:** Client will provide necessary access, documentation, and technical points of contact (e.g., Tech Lead Sarah) for warehouse system integration.
+*   **Assumption:** The 3-month timeline and $50k budget are for the "Must Have" MVP features, with "Should Have" and "Could Have" features considered for subsequent phases.
+
+# IDENTIFIED RISKS
+*   **Scope Creep:** Pressure to include "Should Have" or "Could Have" features in the MVP could jeopardize budget and timeline.
+*   **Undefined Warehouse Integration:** Lack of detailed specifications for the existing warehouse system could lead to significant delays, increased costs, or integration challenges.
+*   **Budget/Timeline Mismatch:** The specified budget and timeline may be insufficient for all "Must Have" features, especially considering complex integrations and compliance requirements.
+*   **Performance vs. Feature Trade-offs:** Implementing certain "Should Have" features (e.g., real-time analytics) might conflict with the strict performance requirements.
+*   **Security Compliance Complexity:** Ensuring full PCI and GDPR compliance within the given budget and timeline can be complex and require significant effort.
+
+# QUESTIONS FOR CLIENT
+*   Can you provide documentation or detailed specifications for your existing warehouse system, including its API or data exchange capabilities?
+*   What specific data points or functionalities are essential for the basic reports in the Admin Dashboard?
+*   Do you have any existing brand guidelines, design preferences, or competitor sites you admire for the "modern and eye-catching" homepage?
+*   What are the key metrics or KPIs you will use to measure the projected 20% conversion boost?
+*   For the "save for later" functionality, should items be saved indefinitely, and is it tied to user accounts or also available for guest users?
+*   What is the expected volume and frequency of data exports to Excel, and are there specific data sets required?
+*   When would your tech lead, Sarah, be available for an initial technical discussion regarding the warehouse integration and other system architecture details?

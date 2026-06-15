@@ -1,0 +1,821 @@
+# CLIENT REQUIREMENTS ANALYSIS REPORT
+
+## EXECUTIVE SUMMARY
+
+Client: John (Luxury Home Furniture E-commerce)
+Project: Website Redesign & E-Commerce Platform
+Budget: ~$50,000
+Timeline: 3 months
+Current Metrics: $2M annual revenue, 50k unique visitors/month
+Expected Impact: 20% conversion rate improvement
+
+---
+
+# FUNCTIONAL REQUIREMENTS
+
+## MUST HAVE (MVP - Critical for Launch)
+
+### 1. Product Catalog with Advanced Filtering (Medium Effort)
+- **User Story**: As a customer, I can browse and filter products by price, category, color, and size so that I can find items matching my preferences
+- **Acceptance Criteria**:
+  - Filter results within 2 seconds of selection
+  - Multiple filter combinations work correctly
+  - Mobile-responsive filter UI
+  - At least 3 product images per item
+  - Product descriptions optimized for SEO
+
+### 2. Search Functionality (Medium Effort)
+- **User Story**: As a customer, I can search for products by keywords so that I can quickly locate items I'm interested in
+- **Acceptance Criteria**:
+  - Search results return within 500ms
+  - Spelling tolerance (fuzzy matching)
+  - Search filters work with category filters
+  - Mobile search accessible via icon
+  - Popular searches displayed on search page
+
+### 3. Shopping Cart System (Medium Effort)
+- **User Story**: As a customer, I can add items to cart, view total price, and proceed to checkout so that I can purchase products
+- **Acceptance Criteria**:
+  - Cart persists across sessions (stored locally or via account)
+  - Real-time price updates
+  - Quantity adjustment without page reload
+  - Remove/clear cart options
+  - Coupon code application
+
+### 4. User Account Management (Medium Effort)
+- **User Story**: As a customer, I can create an account and view my order history so that I can track purchases and manage preferences
+- **Acceptance Criteria**:
+  - Email verification for new accounts
+  - Password reset functionality
+  - Order history with order dates and status
+  - Saved addresses for future orders
+  - User profile editable
+  - Account recovery options
+
+### 5. Payment Integration - Stripe (Large Effort)
+- **User Story**: As a customer, I can securely pay for orders using card, Apple Pay, or Google Pay so that I can complete my purchase
+- **Acceptance Criteria**:
+  - Multiple payment methods supported
+  - PCI-DSS compliant (Level 1)
+  - USD and CAD currency support (expandable)
+  - Secure card tokenization
+  - Payment failure handling with user-friendly messages
+  - Receipt generation and email
+
+### 6. Modern Homepage Design (Medium Effort)
+- **User Story**: As a visitor, I see a visually appealing homepage with latest design trends so that I'm encouraged to explore products
+- **Acceptance Criteria**:
+  - Follows current UX/UI best practices (2024)
+  - Clear value proposition above fold
+  - Hero section with high-quality imagery
+  - Featured products section
+  - Testimonials/social proof section
+  - Newsletter signup prominent
+  - Mobile-optimized layout
+
+### 7. Newsletter Signup Integration (Small Effort)
+- **User Story**: As a visitor, I can subscribe to the newsletter so that I receive promotional content and product updates
+- **Acceptance Criteria**:
+  - Form validation for email format
+  - Confirmation email sent to subscriber
+  - Unsubscribe functionality compliant with CAN-SPAM
+  - Integration with existing email platform
+  - Double opt-in for legal compliance
+
+### 8. Admin Dashboard - Basic Inventory Management (Large Effort)
+- **User Story**: As an admin, I can view inventory levels and manage stock so that I avoid overselling
+- **Acceptance Criteria**:
+  - Real-time inventory display
+  - Low stock alerts (configurable threshold)
+  - Batch inventory updates
+  - SKU management
+  - Stock history/audit log
+  - CSV import/export for updates
+
+### 9. Admin Dashboard - Order Management (Large Effort)
+- **User Story**: As an admin, I can view orders, update status, and generate reports so that I can manage fulfillment
+- **Acceptance Criteria**:
+  - Order list with filters (date, status, customer)
+  - Order detail view with customer info
+  - Status update workflow (pending → processing → shipped → delivered)
+  - Customer communication templates
+  - Refund processing
+  - Order export to Excel/CSV
+
+### 10. Admin Dashboard - Basic Analytics & Reporting (Medium Effort)
+- **User Story**: As an admin, I can view sales analytics and performance metrics so that I can make data-driven decisions
+- **Acceptance Criteria**:
+  - Daily/Weekly/Monthly sales totals
+  - Top-selling products
+  - Customer acquisition metrics
+  - Conversion rate visualization
+  - Export reports to PDF/Excel
+  - Non-real-time is acceptable (daily updates)
+
+---
+
+## SHOULD HAVE (High Priority - Recommended for Phase 1)
+
+### 1. Save for Later / Wishlist Feature (Small Effort)
+- **User Story**: As a customer, I can save items for later review so that I can complete purchases when ready
+- **Acceptance Criteria**:
+  - Wishlist persists across sessions
+  - Share wishlist with others (via link)
+  - Move wishlist items to cart
+  - Wishlist item availability notifications
+  - Set maximum 100 items per user
+
+### 2. Warehouse System Integration (Large Effort - Blockers?)
+- **User Story**: As an admin, inventory updates automatically from warehouse system so that our catalog reflects actual stock
+- **Acceptance Criteria**:
+  - Daily sync with warehouse database
+  - Sync failures logged with alerts
+  - Manual sync override available
+  - Data validation before update
+  - Warehouse system compatibility assessment needed
+
+### 3. SEO Optimization Core Features (Medium Effort)
+- **User Story**: As a marketer, I can optimize product pages for search engines so that we rank for target keywords
+- **Acceptance Criteria**:
+  - Optimized meta titles and descriptions
+  - URL slug optimization
+  - Schema markup for products
+  - Sitemap generation and submission
+  - Robots.txt configuration
+  - Page speed optimization (Lighthouse 90+)
+
+### 4. Security & Compliance - GDPR (Medium Effort)
+- **User Story**: As a business, I must comply with GDPR for EU visitors so that we avoid legal penalties
+- **Acceptance Criteria**:
+  - Privacy policy prominently displayed
+  - Consent banner for cookies
+  - Data export functionality
+  - Account deletion with data removal
+  - DPA signed with hosting provider
+  - GDPR readiness audit
+
+### 5. Security & Compliance - PCI DSS Level 1 (Large Effort)
+- **User Story**: As a business, I must achieve PCI DSS compliance so that we can securely process payments
+- **Acceptance Criteria**:
+  - SSL/TLS encryption (HTTPS everywhere)
+  - No sensitive data in logs
+  - Regular security assessments
+  - Vulnerability scanning
+  - Security updates within 30 days
+  - Employee access controls
+
+### 6. Mobile Optimization & Responsive Design (Medium Effort)
+- **User Story**: As a mobile user, the website functions perfectly on my phone so that I can shop seamlessly
+- **Acceptance Criteria**:
+  - Mobile-first design approach
+  - Touch-friendly interface elements
+  - Fast load times on 4G (< 3 seconds)
+  - Proper viewport configuration
+  - Mobile-specific navigation
+  - No horizontal scrolling required
+
+### 7. Product Image Optimization (Small Effort)
+- **User Story**: As a customer, I can zoom and rotate product images so that I can inspect items thoroughly
+- **Acceptance Criteria**:
+  - Zoom functionality on click/hover
+  - Multiple angles available
+  - High-resolution images (but optimized for web)
+  - Lazy loading for performance
+  - Alt text for accessibility
+  - CDN delivery for fast load
+
+### 8. Basic Live Chat Support (Medium Effort)
+- **User Story**: As a customer, I can chat with support so that I get quick answers to my questions
+- **Acceptance Criteria**:
+  - Real-time messaging
+  - Offline mode with email fallback
+  - Pre-chat form (name, email, topic)
+  - Chat history available after account creation
+  - Mobile-accessible
+  - Support team notifications
+
+---
+
+## COULD HAVE (Nice-to-Have for Future Phases)
+
+### 1. Gift Products Feature (Small Effort)
+- **User Story**: As a customer, I can gift a product to a friend so that I can send presents online
+- **Acceptance Criteria**:
+  - Gift recipient email/address capture
+  - Custom gift message
+  - Gift wrapping option (if applicable)
+  - Recipient notification email
+  - Gift receipt (not price)
+  - Schedule delivery for specific date
+
+### 2. Advanced Analytics Dashboard (Large Effort)
+- **User Story**: As an admin, I can view real-time analytics so that I can monitor business metrics instantly
+- **Acceptance Criteria**:
+  - Real-time sales updates (< 5 min delay acceptable)
+  - Customer behavior tracking
+  - Heatmaps and session recordings
+  - Cohort analysis
+  - Custom date ranges
+  - Minimal performance impact
+
+### 3. Product Recommendations Engine (Large Effort)
+- **User Story**: As a customer, I see personalized product recommendations so that I discover relevant items
+- **Acceptance Criteria**:
+  - "Customers also bought" section
+  - "You may like" recommendations
+  - Related products by category
+  - ML-based personalization (future phase)
+  - A/B test recommendation algorithms
+  - Performance monitoring
+
+### 4. Multi-Language Support (Medium Effort)
+- **User Story**: As an international customer, I can browse the website in my language so that I have better user experience
+- **Acceptance Criteria**:
+  - Translation of core pages (not full site initially)
+  - Language selector dropdown
+  - URL-based language switching (/en/, /fr/)
+  - Only English and French for Phase 1
+  - Professional translation (not machine)
+  - RTL language support planning
+
+### 5. Advanced Inventory Alerts (Small Effort)
+- **User Story**: As a customer, I can set alerts for out-of-stock items so that I'm notified when they're back in stock
+- **Acceptance Criteria**:
+  - Email notification when item restocked
+  - User can manage notification preferences
+  - Unsubscribe option
+  - Bulk notification limits to prevent spam
+  - Opt-in during checkout
+
+### 6. Loyalty/Rewards Program (Medium Effort - Business Decision Needed)
+- **User Story**: As a loyal customer, I earn points on purchases so that I'm incentivized to shop more
+- **Acceptance Criteria**:
+  - 1 point per dollar spent
+  - Point display on customer account
+  - Redeemable for discounts (100 points = $5)
+  - Referral bonus points
+  - Tier system (Bronze/Silver/Gold)
+  - Point expiration policy
+
+### 7. DDoS Protection (Medium-Large Effort)
+- **User Story**: As a business, our website is protected from DDoS attacks so that we maintain availability
+- **Acceptance Criteria**:
+  - CDN with DDoS mitigation (Cloudflare, AWS Shield)
+  - Rate limiting for suspicious traffic
+  - IP reputation filtering
+  - Incident response playbook
+  - 24/7 monitoring
+
+---
+
+## WON'T HAVE (Out of Scope - Explicitly Excluded)
+
+- Social media integration (Phase 2)
+- Subscription-based orders
+- Virtual reality product preview
+- Social sharing on products (Phase 2)
+- Third-party marketplace integration (Amazon, eBay)
+- Video product demos (can be added as links)
+- Advanced inventory forecasting with ML
+
+---
+
+# NON-FUNCTIONAL REQUIREMENTS
+
+## PERFORMANCE REQUIREMENTS
+
+### Load Time Objectives
+- Homepage: < 2 seconds (4G network)
+- Product Page: < 2.5 seconds
+- Search Results: < 1 second
+- Checkout Page: < 2 seconds
+- Admin Dashboard: < 3 seconds
+- Mobile: < 3 seconds on 4G
+
+### Performance Metrics
+- Lighthouse Score: ≥ 90 (all pages)
+- Core Web Vitals: All Green (Google metrics)
+- First Contentful Paint (FCP): < 1.5s
+- Largest Contentful Paint (LCP): < 2.5s
+- Cumulative Layout Shift (CLS): < 0.1
+- Time to Interactive (TTI): < 3.5s
+
+### Optimization Requirements
+- Image optimization and lazy loading mandatory
+- CSS/JS minification and bundling
+- Gzip compression for all responses
+- Browser caching headers properly configured
+- CDN for static assets
+- Database query optimization
+
+---
+
+## SECURITY REQUIREMENTS
+
+### Data Protection
+- All data transmission via HTTPS/TLS 1.2+
+- Passwords hashed with bcrypt or Argon2 (minimum)
+- PCI DSS Level 1 compliance for payment processing
+- GDPR compliant for EU visitors
+- No sensitive data in logs or error messages
+- Data encryption at rest (credit cards via Stripe)
+
+### Access Control
+- Role-based access control (Admin, Staff, Customer)
+- Session timeouts (30 minutes for admin, 7 days for customer)
+- Two-factor authentication for admin accounts
+- API rate limiting (1000 req/min per IP)
+- SQL injection prevention (parameterized queries)
+- CSRF token protection on forms
+- XSS prevention via output encoding
+
+### Compliance & Auditing
+- Security headers (CSP, HSTS, X-Frame-Options)
+- Regular security assessments (monthly)
+- Vulnerability scanning (automated)
+- Security updates within 30 days critical severity
+- Audit logs for all admin actions
+- Privacy policy and terms clearly documented
+
+---
+
+## SCALABILITY REQUIREMENTS
+
+### Current Capacity
+- Support 50,000 unique visitors/month at launch
+- 500 concurrent users during peak hours
+- 2,000+ products in catalog
+
+### Growth Targets
+- Scale to 500,000+ visitors/month
+- 5,000+ concurrent users
+- 50,000+ products (future)
+- 100,000+ customer accounts
+
+### Infrastructure Requirements
+- Horizontal scaling capable (load balancer)
+- Database replication for high availability
+- Content Delivery Network (CDN) for static assets
+- Caching strategy (Redis or equivalent)
+- Database connection pooling
+- Auto-scaling policies based on CPU/memory
+
+---
+
+## AVAILABILITY & RELIABILITY
+
+### Uptime Target
+- 99.5% uptime SLA (4.38 hours downtime/month acceptable)
+- Exclude scheduled maintenance windows (weekends)
+- Real-time monitoring and alerts
+
+### Disaster Recovery
+- Automated daily backups
+- 24-hour backup retention minimum
+- Recovery time objective (RTO): 1 hour
+- Recovery point objective (RPO): 15 minutes
+- Tested backup restoration quarterly
+- Database redundancy across regions
+
+---
+
+## USABILITY & ACCESSIBILITY
+
+### Usability Standards
+- Mobile-first design approach
+- Maximum 3 clicks to any product
+- Checkout process < 5 steps
+- Clear error messages with solutions
+- Form validation with inline feedback
+- Consistent navigation across all pages
+- Search accessible from all pages
+
+### Accessibility (WCAG 2.1 AA Compliance)
+- Keyboard navigation support
+- Alt text for all images
+- Proper heading hierarchy
+- Color contrast minimum 4.5:1 for text
+- Responsive text sizing (no fixed sizes)
+- Focus indicators visible
+- Screen reader compatible
+
+---
+
+# TECHNICAL CONSTRAINTS & ASSUMPTIONS
+
+## Technology Stack Assumptions
+
+⚠️ **ASSUMPTION**: You're flexible on technology choices
+- Frontend: Modern framework (React, Vue, or similar)
+- Backend: Node.js, Python, or similar (not specified)
+- Database: PostgreSQL or MySQL (cost-effective, reliable)
+- Hosting: AWS, Google Cloud, or DigitalOcean (scalable)
+- CDN: Cloudflare or AWS CloudFront
+
+⚠️ **ASSUMPTION**: Stripe is current payment processor
+- Full integration should be feasible
+- PCI compliance handled by Stripe
+- No switching to other processors mentioned
+
+⚠️ **ASSUMPTION**: No specialized tech stack constraints
+- You're open to industry-standard solutions
+- Legacy system integration not required (except warehouse)
+
+---
+
+## External Dependencies & Integrations
+
+### Required Third-Party Services
+1. **Stripe** - Payment processing
+   - Current integration status unclear
+   - Need to verify API keys and account setup
+   - Multi-currency support available
+
+2. **Email Service** - Newsletter & transactional emails
+   - Mailchimp, SendGrid, or similar
+   - Integration method not specified
+   - Compliance with CAN-SPAM required
+
+3. **Warehouse System** - Inventory synchronization
+   - **CRITICAL**: System specifications not provided
+   - API documentation needed
+   - Database schema unknown
+   - Sync frequency not defined
+
+4. **Analytics** - Google Analytics or alternative
+   - Tracking requirements not detailed
+   - Privacy-compliant implementation needed
+
+5. **Hosting Provider** - Server infrastructure
+   - Current provider not mentioned
+   - Migration strategy needed
+
+---
+
+## Budget & Timeline Constraints
+
+⚠️ **CONSTRAINT**: $50,000 budget
+- Must be realistic for feature scope
+- May require phased delivery
+- Resource allocation critical
+
+⚠️ **CONSTRAINT**: 3-month timeline
+- Aggressive but feasible for MVP
+- Warehouse integration may be bottleneck
+- Testing and deployment time needed
+- No buffer for requirements changes
+
+### Budget Allocation Estimate (Preliminary)
+- Frontend Development: 30% ($15,000)
+- Backend Development: 35% ($17,500)
+- Payment Integration: 10% ($5,000)
+- Design & UX: 15% ($7,500)
+- Testing & Deployment: 10% ($5,000)
+- Total: $50,000
+
+---
+
+## Team & Resource Assumptions
+
+⚠️ **ASSUMPTION**: Dedicated development team available
+- Client mentioned "small team"
+- External agency needed (not in-house development)
+- Tech lead (Sarah) available for consultation
+- Project manager assigned
+
+⚠️ **ASSUMPTION**: Client can provide timely feedback
+- Requirements clarification needed
+- Testing participation expected
+- Sign-off authority identified
+
+---
+
+# IDENTIFIED RISKS & CHALLENGES
+
+## 🔴 HIGH RISK
+
+### 1. Warehouse System Integration Complexity
+**Risk**: Warehouse system specifications completely undefined
+- Unknown API documentation
+- Unknown data formats and schema
+- Unknown sync requirements (real-time vs. batch)
+- Unknown error handling and retry logic
+- Integration could consume 40%+ of development time
+
+**Impact**: High - Could delay entire project or cause data inconsistency
+**Probability**: High - Based on vague requirements
+
+**Mitigation**:
+- Immediately request warehouse system documentation
+- Request sample API responses
+- Propose integration timeline separately
+- Consider phased approach (manual updates Phase 1)
+- Schedule technical meeting with warehouse system owner
+- Document all assumptions in writing
+
+---
+
+### 2. Timeline Feasibility (3 Months)
+**Risk**: Aggressive timeline for feature scope
+- 12 weeks for analysis, development, testing, deployment
+- 2-3 weeks minimum for requirements refinement
+- 4-6 weeks for MVP development
+- 2-3 weeks for testing and fixes
+- 1 week for deployment preparation
+
+**Impact**: High - Quality compromises or missed features
+**Probability**: High - Scope creep is likely
+
+**Mitigation**:
+- Strict MVP scope lock (must-haves only)
+- Daily standups to catch delays early
+- Automated testing from day 1
+- Parallel development streams where possible
+- Buffer time for Stripe integration complexity
+- Plan "nice-to-haves" for Phase 2
+
+---
+
+### 3. Data Sync & Consistency Issues
+**Risk**: Manual warehouse updates currently prone to error
+- Proposed automation could introduce new issues
+- Data integrity risks with daily syncs
+- No current backup/recovery process documented
+- Race conditions if sync and sales occur simultaneously
+
+**Impact**: High - Inventory inaccuracy → lost sales or overselling
+**Probability**: Medium - With proper testing
+
+**Mitigation**:
+- Implement robust error logging for all syncs
+- Validation layer for synced data
+- Rollback capability for bad syncs
+- Real-time alerting for discrepancies
+- Weekly data integrity audits
+- Manual override process for emergencies
+
+---
+
+## 🟡 MEDIUM RISK
+
+### 4. Mobile Performance on 4G
+**Risk**: Homepage must load in < 2 seconds on 4G
+- Typical 4G speed: 10-30 Mbps (highly variable)
+- Page size > 3MB would struggle
+- Image optimization critical
+- No mention of current page size
+
+**Impact**: Medium - Poor mobile UX, lower conversion
+**Probability**: Medium - Requires discipline on asset size
+
+**Mitigation**:
+- Weekly Lighthouse audits
+- Image optimization mandate (WebP, lazy load)
+- CSS/JS minification and tree-shaking
+- CDN for all static assets
+- Set max page size budgets (< 2MB HTML+CSS+JS)
+
+---
+
+### 5. Conversion Rate Expectation (20% Increase)
+**Risk**: Goal of 20% conversion improvement ambitious
+- Current baseline conversion rate not provided
+- Assumes website is only conversion lever
+- Marketing, pricing, products also affect conversion
+- Could create unrealistic expectations
+
+**Impact**: Medium - Client disappointment if not achieved
+**Probability**: Medium-High - Typical expectation mismatch
+
+**Mitigation**:
+- Document current conversion baseline
+- Establish monitoring dashboard
+- Identify conversion drivers (design, features, trust)
+- Plan A/B tests for future optimization
+- Set realistic milestones (5% Phase 1, 20% by Year 1)
+- Include analytics for data-driven improvements
+
+---
+
+### 6. Payment Processing Complexity
+**Risk**: Multi-currency and multiple payment methods
+- Stripe supports these, but adds complexity
+- USD/CAD + Apple Pay/Google Pay = more testing
+- Regional regulations differ by payment method
+- Fraud prevention rules vary by currency
+
+**Impact**: Medium - Increased testing and edge cases
+**Probability**: Low-Medium - Stripe makes this easier
+
+**Mitigation**:
+- Use Stripe's recommended libraries
+- Comprehensive payment flow testing
+- Currency conversion rates management
+- Fraud detection rules per region
+- Clear error messages for payment failures
+
+---
+
+## 🟢 LOW RISK
+
+### 7. GDPR/PCI Compliance
+**Risk**: Regulatory compliance requirements
+- PCI DSS compliance possible with Stripe
+- GDPR requirements standard and well-documented
+- Tools and services available
+
+**Impact**: Medium - Legal liability if not done correctly
+**Probability**: Low - With proper implementation
+
+**Mitigation**:
+- Hire compliance consultant for review
+- Use security-focused hosting provider
+- Implement privacy by design
+- Regular compliance audits
+- Clear policies and documentation
+
+---
+
+### 8. SEO Optimization
+**Risk**: Expectation to rank for "luxury home furniture"
+- Competitive keyword, established competitors
+- Requires ongoing content and marketing
+- Technical SEO is one factor among many
+
+**Impact**: Low - SEO is ongoing, not just technical
+**Probability**: High - Unrealistic expectations
+
+**Mitigation**:
+- Set realistic SEO timeline (6-12 months for ranking)
+- Implement technical SEO best practices
+- Recommend content strategy and blogging
+- Set up Google Search Console and Analytics
+- Monthly SEO performance reporting
+
+---
+
+### 9. Team Coordination
+**Risk**: Client mentions potential involvement of tech lead Sarah
+- External team coordination adds communication overhead
+- Decision-making delays possible
+
+**Impact**: Low-Medium - Process issue, not technical
+**Probability**: Medium - Small team dynamics
+
+**Mitigation**:
+- Establish clear decision authority upfront
+- Schedule regular syncs with Sarah and stakeholders
+- Document decisions in writing
+- Use project management tool for visibility
+
+---
+
+# QUESTIONS TO CLARIFY WITH CLIENT
+
+## ⏰ URGENT (Impact Timeline)
+
+### Q1: What is your current conversion rate baseline?
+**Why**: Essential for measuring the 20% improvement goal. Without baseline, we can't track success. Is it 1%, 3%, 5%?
+
+### Q2: What exactly is the warehouse system? API documentation? Database details?
+**Why**: This is a potential project blocker. We need specifications, data schemas, and integration method immediately to estimate effort (2 weeks vs. 2 months).
+
+### Q3: Is the $50,000 budget fixed or flexible? What's your priority: features, timeline, or cost?
+**Why**: Helps us make scope trade-offs. If budget is hard limit, we may need to extend timeline or reduce features.
+
+### Q4: Is the 3-month timeline absolute, or is there flexibility?
+**Why**: Aggressive timeline impacts quality. Knowing deadline flexibility helps us plan realistic delivery.
+
+### Q5: Who is the decision-maker and legal authority for sign-offs?
+**Why**: Need clear authority for requirements approval, scope changes, and sign-offs.
+
+---
+
+## 🔔 HIGH PRIORITY (Major Scope Items)
+
+### Q6: Do you want warehouse integration in Phase 1 (3 months) or Phase 2?
+**Why**: This feature has unknown complexity. Recommend handling separately. If Phase 1, need warehouse docs ASAP.
+
+### Q7: What email service are you currently using for customer communications?
+**Why**: Affects newsletter integration, transactional email, and customer support workflows. Mailchimp, SendGrid, or custom?
+
+### Q8: What analytics platform do you prefer (Google Analytics, Mixpanel, custom)?
+**Why**: Affects implementation approach and available metrics.
+
+### Q9: Do you currently have Stripe API keys and account set up?
+**Why**: Need to verify existing integration or set up new account if migrating.
+
+### Q10: Will you provide SSL/TLS certificate and domain management, or should we handle it?
+**Why**: Affects deployment plan and responsibility assignment.
+
+---
+
+## 📋 MEDIUM PRIORITY (Requirements Clarity)
+
+### Q11: For "live chat support," what hours? Full-time, business hours only, or chatbot after hours?
+**Why**: Affects implementation (real person needed = staffing, vs. chatbot only).
+
+### Q12: What payment methods are most used by your customers currently?
+**Why**: Helps prioritize which payment methods to implement (credit card vs. Apple Pay vs. Google Pay).
+
+### Q13: Do you currently have customer email list? How many subscribers?
+**Why**: Affects newsletter integration scope and email service selection.
+
+### Q14: Are there any existing integrations or APIs we need to maintain?
+**Why**: Could affect architecture and migration strategy.
+
+### Q15: What's your preferred tech stack? Any hard requirements or preferences?
+**Why**: Though we can recommend, knowing your preferences helps avoid rework.
+
+### Q16: How many products are currently in your catalog? Any growth projections?
+**Why**: Affects database schema, search indexing, and performance optimization strategy.
+
+### Q17: Do you have design mockups or style guide for the new website?
+**Why**: If not, we should allocate budget for design phase.
+
+### Q18: Who will manage product photos and descriptions? Your team or ours?
+**Why**: Affects content management workflow and training needs.
+
+---
+
+## 🔍 DETAILED REQUIREMENTS (Lower Priority, Refine Later)
+
+### Q19: For wishlist/saved items, how long should items persist? Permanent or time-limited?
+**Why**: Affects database strategy and notifications.
+
+### Q20: Should customers be able to filter by multiple price ranges or just min/max?
+**Why**: Affects UI complexity and filter logic.
+
+### Q21: Do you need integration with shipping carriers (FedEx, UPS) for real-time rates?
+**Why**: Could be Phase 2, but affects current order management design.
+
+### Q22: For the admin dashboard, do you need to manage multiple warehouse locations?
+**Why**: If yes, adds complexity to inventory system.
+
+### Q23: Should products have reviews/ratings? Do you want moderation?
+**Why**: Popular feature, but requires review management workflow.
+
+### Q24: What's your refund/return policy? How will this be enforced in the system?
+**Why**: Affects order management workflow and customer communication.
+
+### Q25: Do you want to integrate with social media accounts for login (Facebook, Google)?
+**Why**: Improves user experience but adds auth complexity.
+
+---
+
+# EFFORT ESTIMATION SUMMARY
+
+| Feature | Complexity | Days | Status |
+|---------|-----------|------|--------|
+| Homepage Design | Medium | 10 | Must-Have |
+| Product Catalog | Medium | 12 | Must-Have |
+| Search Functionality | Medium | 8 | Must-Have |
+| Shopping Cart | Medium | 10 | Must-Have |
+| User Accounts | Medium | 10 | Must-Have |
+| Stripe Integration | Large | 14 | Must-Have |
+| Admin Dashboard (Basic) | Large | 20 | Must-Have |
+| Newsletter Integration | Small | 4 | Should-Have |
+| Mobile Optimization | Medium | 8 | Should-Have |
+| Warehouse Integration | Large | 20-40* | Should-Have (pending) |
+| SEO Optimization | Medium | 8 | Should-Have |
+| GDPR/PCI Compliance | Medium | 10 | Should-Have |
+| Testing & QA | N/A | 15 | All Phases |
+| Deployment & DevOps | Medium | 8 | All Phases |
+| **TOTAL (MVP)** | — | **90-100 days** | **~14-16 weeks** |
+
+*Warehouse integration timeline highly dependent on system specifications
+
+---
+
+# NEXT STEPS
+
+1. ✅ **Schedule Requirements Clarification Meeting** (This Week)
+   - Review all URGENT questions
+   - Get warehouse system documentation
+   - Confirm budget and timeline flexibility
+
+2. 📋 **Detailed Warehouse Integration Assessment** (Week 1)
+   - Review warehouse API docs
+   - Estimate integration effort
+   - Decide Phase 1 vs. Phase 2
+
+3. 🎨 **Design & Mockup Review** (Week 2)
+   - Confirm design direction
+   - Get approval on homepage/product page layouts
+   - Discuss color scheme and brand guidelines
+
+4. 🔧 **Technical Stack Finalization** (Week 2)
+   - Confirm frontend/backend frameworks
+   - Finalize hosting provider
+   - Set up development environment
+
+5. 📦 **Sprint Planning** (Week 3)
+   - Break down must-haves into sprints
+   - Assign resources
+   - Set weekly milestones
+
+---
+
+**Report Generated**: June 15, 2024
+**Analysis Status**: Ready for Client Review
+**Recommended Action**: Schedule clarification meeting ASAP

@@ -1,0 +1,64 @@
+# Git ignore file for Client Requirement Automation Project
+# Prevents accidentally committing sensitive files to version control
+
+# Configuration files with credentials
+automate.py
+config/EMAIL_CONFIG*.txt
+
+# Sensitive data
+*.env
+.env
+.env.local
+credentials.json
+*.key
+*.pem
+
+# Generated files
+outputs/
+logs/
+
+# Python related
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Mail/email related (if storing actual emails)
+*.eml
+*.msg

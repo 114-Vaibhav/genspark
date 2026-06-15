@@ -1,0 +1,36 @@
+Subject: Website Redesign Project - Requirements & Timeline
+
+Hi there,
+
+Hope you're having a great week! I need to get this website project rolling ASAP. Our current site is pretty outdated and we're losing customers to competitors who have better online experiences.
+
+Here's what we need:
+
+1. The homepage should be modern and eye-catching - use latest design trends. We want it to load super fast, ideally under 2 seconds on 4G. Mobile needs to be perfect too since most of our traffic comes from phones.
+
+2. We need a product catalog with filtering - customers should be able to filter by price, category, color, size. Search function is critical here because our current search is broken and frustrates users.
+
+3. Shopping cart functionality - duh! But also the ability to save items for later. We're seeing people abandon carts and I think it's because they can't save things.
+
+4. User accounts - customers should be able to create accounts and see their order history. Maybe newsletter signup too? We want to build our email list.
+
+5. Payment integration - we use Stripe currently. Need to handle multiple currencies eventually but US & Canada first. Also need Apple Pay and Google Pay options because people are lazy and don't want to type card details.
+
+6. Admin dashboard - we need to manage inventory, see orders, generate reports. Export data to Excel please. Real-time analytics would be nice but only if it doesn't slow things down.
+
+7. SEO optimization - it needs to rank for keywords like "luxury home furniture" and "modern dining chairs". Current site is invisible on Google.
+
+8. Security - PCI compliance obviously since we take payments. GDPR too since some European customers visit the site. We've had some sketchy traffic lately so maybe DDoS protection?
+
+9. The site should integrate with our warehouse system somehow? I'm not sure exactly how yet but we need inventory to be updated automatically. Our current process involves someone manually updating numbers which is a nightmare.
+
+10. One more thing - users have been asking for a wishlist feature, live chat support, and the ability to gift products to friends. These would be nice to have but not day-one requirements.
+
+Budget is around $50k and we'd like this live in 3 months. We're a small team so documentation and training on how to maintain the site will be important.
+
+Our business is doing ~$2M in annual revenue and we expect this redesign to boost conversion by at least 20%. Traffic is about 50k unique visitors per month.
+
+Let me know if you have questions or need clarification. I'll loop in our tech lead Sarah next week if needed.
+
+Cheers,
+John
