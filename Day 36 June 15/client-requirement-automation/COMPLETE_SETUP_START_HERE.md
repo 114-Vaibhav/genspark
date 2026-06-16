@@ -41,13 +41,13 @@ class Config:
     
     # Gmail Configuration (already filled)
     SENDER_EMAIL = "vaibhavguptanitt@gmail.com"
-    SENDER_PASSWORD = "wjwgvuwqplrnqwba"
+    SENDER_PASSWORD = "***************"
     RECIPIENT_EMAIL = "vg9400313@gmail.com"
 ```
 
 **Replace this:**
 ```python
-GEMINI_API_KEY = "AIzaSyCLBQRfJKxGKZF9yrxphYB_U-Ej7BLaK4w"
+GEMINI_API_KEY = "***********************"
 ```
 
 **With your key:**
@@ -258,7 +258,7 @@ client-requirement-automation/
 2. **Gmail Sender** (already configured)
    ```python
    SENDER_EMAIL = "vaibhavguptanitt@gmail.com"
-   SENDER_PASSWORD = "wjwgvuwqplrnqwba"
+   SENDER_PASSWORD = "*********"
    RECIPIENT_EMAIL = "vg9400313@gmail.com"
    ```
 

@@ -60,7 +60,7 @@ Config.GEMINI_API_KEY = "AIzaSy..."  # ← Get from https://aistudio.google.com/
 ```python
 # automate.py - line ~48-50
 Config.SENDER_EMAIL = "vaibhavguptanitt@gmail.com"
-Config.SENDER_PASSWORD = "wjwgvuwqplrnqwba"
+Config.SENDER_PASSWORD = "******************"
 Config.RECIPIENT_EMAIL = "vg9400313@gmail.com"
 ```
 
