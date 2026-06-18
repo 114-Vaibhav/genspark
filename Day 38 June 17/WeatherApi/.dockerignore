@@ -1,0 +1,19 @@
+bin/
+obj/
+
+# Git history — never needed in an image
+.git/
+.gitignore
+
+# Docker files themselves
+Dockerfile*
+.dockerignore
+
+# Editor and OS files
+.vs/
+.vscode/
+*.user
+.DS_Store
+
+# Test projects (don't ship tests to production)
+**/*.Tests/

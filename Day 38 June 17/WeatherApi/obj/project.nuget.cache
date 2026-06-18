@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "TR7OAQJh+0c=",
+  "success": true,
+  "projectFilePath": "/Users/vaibhavgupta/Desktop/Intern Work/genspark/Day 38 June 17/WeatherApi/WeatherApi.csproj",
+  "expectedPackageFiles": [
+    "/Users/vaibhavgupta/.nuget/packages/microsoft.netcore.app.ref/8.0.26/microsoft.netcore.app.ref.8.0.26.nupkg.sha512",
+    "/Users/vaibhavgupta/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.26/microsoft.aspnetcore.app.ref.8.0.26.nupkg.sha512",
+    "/Users/vaibhavgupta/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.26/microsoft.netcore.app.host.osx-arm64.8.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}
