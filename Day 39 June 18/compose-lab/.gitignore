@@ -1,0 +1,12 @@
+# Add .env to gitignore — real credentials stay local
+echo ".env" >> .gitignore
+
+# .env.example has keys but no values — safe to commit
+cat > .env.example << 'EOF'
+DB_USER=
+DB_PASS=
+DB_NAME=
+PGADMIN_EMAIL=
+PGADMIN_PASS=
+PGADMIN_PORT=5050
+EOF

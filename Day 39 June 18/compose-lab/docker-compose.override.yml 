@@ -1,0 +1,13 @@
+# docker-compose.override.yml
+# Auto-merged with docker-compose.yml on every docker compose up
+# Contains dev-only settings — do not use in production
+
+services:
+  db:
+    ports:
+      - "5432:5432"     # Expose DB port so DBeaver can connect directly
+                         # Remove this in production for security
+
+  pgadmin:
+    environment:
+      PGADMIN_CONFIG_SERVER_MODE: "False"   # Skip login screen in dev
