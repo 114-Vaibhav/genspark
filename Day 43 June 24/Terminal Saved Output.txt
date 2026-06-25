@@ -1,0 +1,64 @@
+Last login: Tue Jun 23 11:43:58 on ttys003
+/dev/fd/12:25: command not found: compdef
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get services
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   40m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % apply -f 01-postgres.yaml
+apply: illegal option -- f
+usage: apply [-a magic] [-d] [-0123456789] command arguments ...
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % apply -f 01-postgres.yaml
+apply: illegal option -- f
+usage: apply [-a magic] [-d] [-0123456789] command arguments ...
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % apply -f 01-postgres.yaml
+apply: illegal option -- f
+usage: apply [-a magic] [-d] [-0123456789] command arguments ...
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl apply -f 01-postgres.yaml
+persistentvolumeclaim/postgres-pvc created
+deployment.apps/postgres created
+service/postgres created
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get services             
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    74m
+postgres     ClusterIP   10.96.193.59   <none>        5432/TCP   8s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get deployment
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+postgres   1/1     1            1           20s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+postgres-54b955fdfb-tlszm   1/1     Running   0          29s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods --watch
+NAME                        READY   STATUS    RESTARTS   AGE
+postgres-54b955fdfb-tlszm   1/1     Running   0          45s
+postgres-54b955fdfb-tlszm   1/1     Running   0          96s
+^C%                                                                                                                                                                                                       vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get deployment
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+postgres   1/1     1            1           3m39s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get services
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    78m
+postgres     ClusterIP   10.96.193.59   <none>        5432/TCP   4m4s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl exec -it postgres-7fbcbb5d5d-rnstx -- psql -U appuser -d appdb
+Error from server (NotFound): pods "postgres-7fbcbb5d5d-rnstx" not found
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl exec -it postgres-54b955fdfb-tlszm -- psql -U appuser -d appdb
+psql (16.14 (Debian 16.14-1.pgdg13+1))
+Type "help" for help.
+
+appdb=# select version();
+                                                          version                                                           
+----------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+appdb=# \dt
+Did not find any relations.
+appdb=# \q
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl delete pod postgres-54b955fdfb-tlszm
+pod "postgres-54b955fdfb-tlszm" deleted from default namespace
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+postgres-54b955fdfb-f2dt5   1/1     Running   0          19s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get services
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    82m
+postgres     ClusterIP   10.96.193.59   <none>        5432/TCP   7m51s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % 

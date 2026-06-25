@@ -1,0 +1,394 @@
+Last login: Wed Jun 24 11:39:38 on ttys000
+/dev/fd/12:25: command not found: compdef
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 44 June 25 % mkdir k8s-training
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 44 June 25 % cd k8s-training
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta k8s-training % cd MyApi
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker build -t myapi:latest 
+ERROR: docker: 'docker buildx build' requires 1 argument
+
+Usage:  docker buildx build [OPTIONS] PATH | URL | -
+
+Run 'docker buildx build --help' for more information
+
+What's next:
+    Debug this build failure with Gordon → docker ai "help me fix this build failure"
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker build -t myapi:latest .
+[+] Building 63.5s (15/15) FINISHED                                                                                                                                                  docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                 0.0s
+ => => transferring dockerfile: 344B                                                                                                                                                                 0.0s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:8.0                                                                                                                                 1.2s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/sdk:8.0                                                                                                                                    1.2s
+ => [internal] load .dockerignore                                                                                                                                                                    0.0s
+ => => transferring context: 2B                                                                                                                                                                      0.0s
+ => [build 1/6] FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:63ebabdcde24cc8134304a6f50719cf1e22bb4e9f7148ac4ef967c7680187356                                                                       47.6s
+ => => resolve mcr.microsoft.com/dotnet/sdk:8.0@sha256:63ebabdcde24cc8134304a6f50719cf1e22bb4e9f7148ac4ef967c7680187356                                                                              0.0s
+ => => sha256:f5058a9602905b415329f3685ad4eeb2843ce8de21eab1093e1f17b5cf3b8795 17.03MB / 17.03MB                                                                                                     3.2s
+ => => sha256:5e6c1274098b0c6233440793c3f67c0a0847681d37359eb2740553e4175f0916 2.71kB / 2.71kB                                                                                                       0.5s
+ => => sha256:239e1991a48fe3bdb1f95d69016cd4259abd4124e272483c4438a3f8bf5fce5d 174.48MB / 174.48MB                                                                                                  34.0s
+ => => sha256:91c6bbae23e0b819542a7e7768ec64127d80160c38b7bde6ef078f63de8d9d99 31.36MB / 31.36MB                                                                                                     8.1s
+ => => extracting sha256:91c6bbae23e0b819542a7e7768ec64127d80160c38b7bde6ef078f63de8d9d99                                                                                                            0.7s
+ => => extracting sha256:239e1991a48fe3bdb1f95d69016cd4259abd4124e272483c4438a3f8bf5fce5d                                                                                                            4.3s
+ => => extracting sha256:5e6c1274098b0c6233440793c3f67c0a0847681d37359eb2740553e4175f0916                                                                                                            0.0s
+ => => extracting sha256:f5058a9602905b415329f3685ad4eeb2843ce8de21eab1093e1f17b5cf3b8795                                                                                                            0.3s
+ => [internal] load build context                                                                                                                                                                    0.0s
+ => => transferring context: 2.67kB                                                                                                                                                                  0.0s
+ => [stage-1 1/3] FROM mcr.microsoft.com/dotnet/aspnet:8.0@sha256:e78fda31142e28746a6908e288e0d40346793f691ca99d8d150bcbe95c0ef035                                                                  16.0s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:8.0@sha256:e78fda31142e28746a6908e288e0d40346793f691ca99d8d150bcbe95c0ef035                                                                           0.0s
+ => => sha256:f6d721a7c721096912db58db8fb4076c4621730113e2607847683fac28e40f13 10.77MB / 10.77MB                                                                                                     5.8s
+ => => sha256:028482061e3ee6cd9ac79da635e84e62f6ccc135ed79b9d3cb55a9ad4720843e 162B / 162B                                                                                                           0.4s
+ => => sha256:f17a082bf61a4a13f3ace4a0ec7b6b584cd06d471134e19e17853512ef233435 30.84MB / 30.84MB                                                                                                     8.3s
+ => => sha256:81cfc1f311838bfae3cfd18ee6f346c58f0edd7aca051c0e99f505646cf3d9c4 3.33kB / 3.33kB                                                                                                       0.5s
+ => => sha256:fb3b4e36490fd831f4b66cdf0cab68160871d789f9366e9ce79921c0e35b7630 18.54MB / 18.54MB                                                                                                    14.5s
+ => => sha256:74f1dcfcc9c80045f6f6394ffcfc261cb19d0c71b97e964aec3d4abf4e0f7009 28.12MB / 28.12MB                                                                                                    12.3s
+ => => extracting sha256:74f1dcfcc9c80045f6f6394ffcfc261cb19d0c71b97e964aec3d4abf4e0f7009                                                                                                            0.9s
+ => => extracting sha256:fb3b4e36490fd831f4b66cdf0cab68160871d789f9366e9ce79921c0e35b7630                                                                                                            0.3s
+ => => extracting sha256:81cfc1f311838bfae3cfd18ee6f346c58f0edd7aca051c0e99f505646cf3d9c4                                                                                                            0.0s
+ => => extracting sha256:f17a082bf61a4a13f3ace4a0ec7b6b584cd06d471134e19e17853512ef233435                                                                                                            0.5s
+ => => extracting sha256:028482061e3ee6cd9ac79da635e84e62f6ccc135ed79b9d3cb55a9ad4720843e                                                                                                            0.0s
+ => => extracting sha256:f6d721a7c721096912db58db8fb4076c4621730113e2607847683fac28e40f13                                                                                                            0.2s
+ => [stage-1 2/3] WORKDIR /app                                                                                                                                                                       0.7s
+ => [build 2/6] WORKDIR /build                                                                                                                                                                       0.8s
+ => [build 3/6] COPY MyApi.csproj .                                                                                                                                                                  0.0s
+ => [build 4/6] RUN dotnet restore                                                                                                                                                                   7.3s
+ => [build 5/6] COPY . .                                                                                                                                                                             0.0s 
+ => [build 6/6] RUN dotnet publish -c Release -o /app                                                                                                                                                5.2s 
+ => [stage-1 3/3] COPY --from=build /app .                                                                                                                                                           0.1s 
+ => exporting to image                                                                                                                                                                               0.5s 
+ => => exporting layers                                                                                                                                                                              0.3s 
+ => => exporting manifest sha256:5c87604b4fcea4891234bf3535eaa8aed2d23e2ac8c7a2cb407bcf15eeacfdf0                                                                                                    0.0s 
+ => => exporting config sha256:9b2bb98b28a5c022b6d8b16b2e7681a94b8fae5722bb0beaedfefcd712587939                                                                                                      0.0s 
+ => => exporting attestation manifest sha256:8c1e4b9a29daed54efcd13819a30e42ac34daa547f137a10dc04a779d40c2b1c                                                                                        0.0s 
+ => => exporting manifest list sha256:6600dce751b2e1438fba41ed2f588358d58ee0fbf453ac08a3709dacca7b0817                                                                                               0.0s
+ => => naming to docker.io/library/myapi:latest                                                                                                                                                      0.0s
+ => => unpacking to docker.io/library/myapi:latest                                                                                                                                                   0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/0pzuzsllb94vfbc8d3bc7qk73
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker inspect myapi:latest
+[
+    {
+        "Id": "sha256:6600dce751b2e1438fba41ed2f588358d58ee0fbf453ac08a3709dacca7b0817",
+        "RepoTags": [
+            "myapi:latest"
+        ],
+        "RepoDigests": [
+            "myapi@sha256:6600dce751b2e1438fba41ed2f588358d58ee0fbf453ac08a3709dacca7b0817"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-06-25T06:49:45.491405252Z",
+        "Config": {
+            "ExposedPorts": {
+                "8080/tcp": {}
+            },
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "APP_UID=1654",
+                "ASPNETCORE_HTTP_PORTS=8080",
+                "DOTNET_RUNNING_IN_CONTAINER=true",
+                "DOTNET_VERSION=8.0.28",
+                "ASPNET_VERSION=8.0.28"
+            ],
+            "Entrypoint": [
+                "dotnet",
+                "MyApi.dll"
+            ],
+            "WorkingDir": "/app"
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 88813350,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:5b9cd2976ab91a69cd9bc7ff7bcf886b7d0a3518d4ec5f1e724d0f4cf8634197",
+                "sha256:52e564b4fcdb73bd01589077c4fade628e2b9b2222204194a94d55e97f2cbf69",
+                "sha256:3742f5978f79026051e57c4138a4b7398c0c37abfc0160d09519a748fec0daa5",
+                "sha256:d9baed585925f6c48e315ddfc0f6baba64aa4aab3784c05fb7595b84e5edea57",
+                "sha256:0df5381b9d993a534a17d2e572b62686882755e2b2bc285075f3bc8f0d47d3d3",
+                "sha256:2f7f0a946172c5e08ee65cb503d404e8578e316d6ce1f60a3bc68e25f06d3d64",
+                "sha256:b3aac1d7d028827b5d006716dfb5e55ba4793df02816bc2e83290183daaa8e4f",
+                "sha256:8ea8c6b062fc1574b71db80c6d18ca2b3ac10d2947fc382ae62458db2d833131"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-06-25T06:49:45.906325294Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:6600dce751b2e1438fba41ed2f588358d58ee0fbf453ac08a3709dacca7b0817",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "0pzuzsllb94vfbc8d3bc7qk73",
+                    "CreatedAt": "2026-06-25T06:49:45.966034294Z"
+                }
+            ]
+        }
+    }
+]
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker run -p 8081:8080 -e ASPNETCORE_URLS=http://+:8080 -e DB_HOST=postgres -e DB_PORT=5432 -e DB_NAME=appdb -e DB_USER=appuser -e DB_PASSWORD=apppassword myapi:latest
+warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
+      Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://[::]:8080
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /app
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:8081/ - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'HTTP: GET /'
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[1]
+      Setting HTTP status code 200.
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[3]
+      Writing value of type '<>f__AnonymousType1`2' as Json.
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'HTTP: GET /'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:8081/ - 200 - application/json;+charset=utf-8 143.9072ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:8081/favicon.ico - - -
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:8081/favicon.ico - 404 0 - 3.7515ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[16]
+      Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8081/favicon.ico, Response status code: 404
+^Cinfo: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % kubectl create deployment my-app --image=nginx
+deployment.apps/my-app created
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker ps                                     
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % kubectl config current-context
+docker-desktop
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker ps                     
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % kubectl get pods
+NAME                      READY   STATUS    RESTARTS   AGE
+my-app-59854d5646-zc8jc   1/1     Running   0          11m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % kubectl apply -f 02-postgres.yaml
+kubectl get pods --watch
+
+error: the path "02-postgres.yaml" does not exist
+NAME                      READY   STATUS    RESTARTS   AGE
+my-app-59854d5646-zc8jc   1/1     Running   0          11m
+
+^C%                                                                                                                                                                                                       vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % kubectl apply -f 02-configmap.yaml
+error: the path "02-configmap.yaml" does not exist
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta MyApi % cd ../
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta k8s-training % kubectl apply -f 02-configmap.yaml
+error: the path "02-configmap.yaml" does not exist
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta k8s-training % cd manifests
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl get pods
+NAME                      READY   STATUS    RESTARTS   AGE
+my-app-59854d5646-zc8jc   1/1     Running   0          14m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl apply -f 02-configmap.yaml
+kubectl apply -f 02-secret.yaml
+
+configmap/app-config created
+secret/postgres-secret created
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl apply -f 02-postgres.yaml
+deployment.apps/postgres created
+service/postgres created
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl get pods --watch
+NAME                        READY   STATUS              RESTARTS   AGE
+my-app-59854d5646-zc8jc     1/1     Running             0          14m
+postgres-5f64456b7d-p7dvj   0/1     ContainerCreating   0          15s
+postgres-5f64456b7d-p7dvj   1/1     Running             0          22s
+^C%                                                                                                                                                                                                       vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl apply -f 02-api.yaml
+error: error parsing 02-api.yaml: error converting YAML to JSON: yaml: line 2: mapping values are not allowed in this context
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl apply -f 02-api.yaml
+deployment.apps/api created
+service/api created
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl get pods --watch
+NAME                        READY   STATUS              RESTARTS   AGE
+api-65c4f494df-rtq48        0/1     ErrImageNeverPull   0          17s
+my-app-59854d5646-zc8jc     1/1     Running             0          17m
+postgres-5f64456b7d-p7dvj   1/1     Running             0          3m15s
+my-app-59854d5646-zc8jc     1/1     Running             0          18m
+^C%                                                                                                                                                                                                       vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl get deployments
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+api        0/1     1            0           80s
+my-app     1/1     1            1           18m
+postgres   1/1     1            1           4m18s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl get services
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+api          ClusterIP   10.96.113.88    <none>        8080/TCP   86s
+kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP    20m
+postgres     ClusterIP   10.96.111.220   <none>        5432/TCP   4m24s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl get configmaps
+NAME               DATA   AGE
+app-config         6      4m41s
+kube-root-ca.crt   1      20m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl get secrets
+NAME              TYPE     DATA   AGE
+postgres-secret   Opaque   1      4m49s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl get pods
+NAME                        READY   STATUS              RESTARTS   AGE
+api-65c4f494df-rtq48        0/1     ErrImageNeverPull   0          2m6s
+my-app-59854d5646-zc8jc     1/1     Running             0          19m
+postgres-5f64456b7d-p7dvj   1/1     Running             0          5m4s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl exec -it api-65c4f494df-rtq48 -- /bin/bash
+error: Internal error occurred: unable to upgrade connection: container not found ("api")
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl exec -it my-app-59854d5646-zc8jc -- /bin/bash
+root@my-app-59854d5646-zc8jc:/# getent hosts postgres
+10.96.111.220   postgres.default.svc.cluster.local
+root@my-app-59854d5646-zc8jc:/# exit
+exit
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl port-forward service/api 8080:8080
+error: unable to forward port because pod is not running. Current status=Pending
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % kubectl get pods                                     
+NAME                        READY   STATUS              RESTARTS   AGE
+api-65c4f494df-rtq48        0/1     ErrImageNeverPull   0          4m5s
+my-app-59854d5646-zc8jc     1/1     Running             0          21m
+postgres-5f64456b7d-p7dvj   1/1     Running             0          7m3s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % docker build -t myapi:latest .
+[+] Building 0.2s (1/1) FINISHED                                                                                                                                                     docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                 0.1s
+ => => transferring dockerfile: 2B                                                                                                                                                                   0.0s
+ERROR: failed to build: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/0nvszb88397jckj9fksj7m3zd
+
+What's next:
+    Debug this build failure with Gordon → docker ai "help me fix this build failure"
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta manifests % cd ../
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta k8s-training % cd myapi
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % docker build -t myapi:latest .
+[+] Building 0.9s (15/15) FINISHED                                                                                                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                 0.0s
+ => => transferring dockerfile: 344B                                                                                                                                                                 0.0s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:8.0                                                                                                                                 0.6s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/sdk:8.0                                                                                                                                    0.6s
+ => [internal] load .dockerignore                                                                                                                                                                    0.0s
+ => => transferring context: 2B                                                                                                                                                                      0.0s
+ => [build 1/6] FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:63ebabdcde24cc8134304a6f50719cf1e22bb4e9f7148ac4ef967c7680187356                                                                        0.0s
+ => => resolve mcr.microsoft.com/dotnet/sdk:8.0@sha256:63ebabdcde24cc8134304a6f50719cf1e22bb4e9f7148ac4ef967c7680187356                                                                              0.0s
+ => [stage-1 1/3] FROM mcr.microsoft.com/dotnet/aspnet:8.0@sha256:e78fda31142e28746a6908e288e0d40346793f691ca99d8d150bcbe95c0ef035                                                                   0.0s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:8.0@sha256:e78fda31142e28746a6908e288e0d40346793f691ca99d8d150bcbe95c0ef035                                                                           0.0s
+ => [internal] load build context                                                                                                                                                                    0.0s
+ => => transferring context: 2.67kB                                                                                                                                                                  0.0s
+ => CACHED [stage-1 2/3] WORKDIR /app                                                                                                                                                                0.0s
+ => CACHED [build 2/6] WORKDIR /build                                                                                                                                                                0.0s
+ => CACHED [build 3/6] COPY MyApi.csproj .                                                                                                                                                           0.0s
+ => CACHED [build 4/6] RUN dotnet restore                                                                                                                                                            0.0s
+ => CACHED [build 5/6] COPY . .                                                                                                                                                                      0.0s
+ => CACHED [build 6/6] RUN dotnet publish -c Release -o /app                                                                                                                                         0.0s
+ => CACHED [stage-1 3/3] COPY --from=build /app .                                                                                                                                                    0.0s
+ => exporting to image                                                                                                                                                                               0.1s
+ => => exporting layers                                                                                                                                                                              0.0s
+ => => exporting manifest sha256:5c87604b4fcea4891234bf3535eaa8aed2d23e2ac8c7a2cb407bcf15eeacfdf0                                                                                                    0.0s
+ => => exporting config sha256:9b2bb98b28a5c022b6d8b16b2e7681a94b8fae5722bb0beaedfefcd712587939                                                                                                      0.0s
+ => => exporting attestation manifest sha256:95f9450c1f256afdf377a0fc3e924137e82b2b190a770a5e43fd42dd4889dadf                                                                                        0.0s
+ => => exporting manifest list sha256:477288d59b17632c82a75db497f2d976e0beb08a753fe8411b06b9b5de9e8e65                                                                                               0.0s
+ => => naming to docker.io/library/myapi:latest                                                                                                                                                      0.0s
+ => => unpacking to docker.io/library/myapi:latest                                                                                                                                                   0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/c0g3l2d1iyah63vzbjhu4kcrb
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % kubectl get pods              
+NAME                        READY   STATUS              RESTARTS   AGE
+api-65c4f494df-rtq48        0/1     ErrImageNeverPull   0          6m34s
+my-app-59854d5646-zc8jc     1/1     Running             0          23m
+postgres-5f64456b7d-p7dvj   1/1     Running             0          9m32s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % kubectl delete pod api-65c4f494df-rtq48
+pod "api-65c4f494df-rtq48" deleted from default namespace
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % kubectl get pods                       
+NAME                        READY   STATUS              RESTARTS   AGE
+api-65c4f494df-msdgl        0/1     ErrImageNeverPull   0          8s
+my-app-59854d5646-zc8jc     1/1     Running             0          24m
+postgres-5f64456b7d-p7dvj   1/1     Running             0          10m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % kubectl describe pod api-65c4f494df-msdgl
+Name:             api-65c4f494df-msdgl
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             desktop-control-plane/172.21.0.2
+Start Time:       Thu, 25 Jun 2026 12:53:56 +0530
+Labels:           app=api
+                  pod-template-hash=65c4f494df
+Annotations:      <none>
+Status:           Pending
+IP:               10.244.0.8
+IPs:
+  IP:           10.244.0.8
+Controlled By:  ReplicaSet/api-65c4f494df
+Containers:
+  api:
+    Container ID:   
+    Image:          myapi:latest
+    Image ID:       
+    Port:           8080/TCP (http)
+    Host Port:      0/TCP (http)
+    State:          Waiting
+      Reason:       ErrImageNeverPull
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:      100m
+      memory:   128Mi
+    Liveness:   http-get http://:8080/ delay=10s timeout=5s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:8080/ delay=5s timeout=3s period=5s #success=1 #failure=2
+    Environment Variables from:
+      app-config  ConfigMap  Optional: false
+    Environment:
+      DB_PASSWORD:  <set to the key 'DB_PASSWORD' in secret 'postgres-secret'>  Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-fjk6g (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-fjk6g:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason             Age                From               Message
+  ----     ------             ----               ----               -------
+  Normal   Scheduled          52s                default-scheduler  Successfully assigned default/api-65c4f494df-msdgl to desktop-control-plane
+  Warning  ErrImageNeverPull  13s (x5 over 51s)  kubelet            Container image "myapi:latest" is not present with pull policy of Never
+  Warning  Failed             13s (x5 over 51s)  kubelet            Error: ErrImageNeverPull
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % docker save myapi:latest | docker exec -i desktop-control-plane ctr -n=k8s.io images import -
+
+^C%                                                                                                                                                                                                       vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % docker save myapi:latest | docker exec -i desktop-control-plane ctr -n=k8s.io images import -
+docker.io/library/myapi:latest          	saved	
+application/vnd.oci.image.index.v1+json sha256:477288d59b17632c82a75db497f2d976e0beb08a753fe8411b06b9b5de9e8e65
+Importing	elapsed: 13.2s	total:   0.0 B	(0.0 B/s)	
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % kubectl delete pod api-65c4f494df-msdgl
+pod "api-65c4f494df-msdgl" deleted from default namespace
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+api-65c4f494df-vkrch        1/1     Running   0          15s
+my-app-59854d5646-zc8jc     1/1     Running   0          27m
+postgres-5f64456b7d-p7dvj   1/1     Running   0          13m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta myapi % kubectl port-forward service/api 8080:8080
+Forwarding from 127.0.0.1:8080 -> 8080
+Forwarding from [::1]:8080 -> 8080
+Handling connection for 8080
+

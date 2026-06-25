@@ -1,0 +1,152 @@
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % apply -f 01-postgres.yaml
+apply: illegal option -- f
+usage: apply [-a magic] [-d] [-0123456789] command arguments ...
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % apply -f 01-postgres.yaml
+apply: illegal option -- f
+usage: apply [-a magic] [-d] [-0123456789] command arguments ...
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl apply -f 01-postgres.yaml
+persistentvolumeclaim/postgres-pvc created
+deployment.apps/postgres created
+service/postgres created
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get services             
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    74m
+postgres     ClusterIP   10.96.193.59   <none>        5432/TCP   8s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get deployment
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+postgres   1/1     1            1           20s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+postgres-54b955fdfb-tlszm   1/1     Running   0          29s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods --watch
+NAME                        READY   STATUS    RESTARTS   AGE
+postgres-54b955fdfb-tlszm   1/1     Running   0          45s
+postgres-54b955fdfb-tlszm   1/1     Running   0          96s
+^C%                                                                                                                                                                                                       vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get deployment
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+postgres   1/1     1            1           3m39s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get services
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    78m
+postgres     ClusterIP   10.96.193.59   <none>        5432/TCP   4m4s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl exec -it postgres-7fbcbb5d5d-rnstx -- psql -U appuser -d appdb
+Error from server (NotFound): pods "postgres-7fbcbb5d5d-rnstx" not found
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl exec -it postgres-54b955fdfb-tlszm -- psql -U appuser -d appdb
+psql (16.14 (Debian 16.14-1.pgdg13+1))
+Type "help" for help.
+
+appdb=# select version();
+                                                          version                                                           
+----------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+appdb=# \dt
+Did not find any relations.
+appdb=# \q
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl delete pod postgres-54b955fdfb-tlszm
+pod "postgres-54b955fdfb-tlszm" deleted from default namespace
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+postgres-54b955fdfb-f2dt5   1/1     Running   0          19s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get services
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    82m
+postgres     ClusterIP   10.96.193.59   <none>        5432/TCP   7m51s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % clear
+
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl apply -f lab1-nginx.yaml
+deployment.apps/nginx-demo created
+service/nginx-demo created
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-demo-dd58d7d7d-bs2k4   1/1     Running   0          11s
+nginx-demo-dd58d7d7d-rp227   1/1     Running   0          11s
+nginx-demo-dd58d7d7d-xmzb7   1/1     Running   0          11s
+postgres-54b955fdfb-f2dt5    1/1     Running   0          7m17s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get service nginx-service
+Error from server (NotFound): services "nginx-service" not found
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl apply -f lab1-nginx.yaml
+deployment.apps/nginx-demo unchanged
+service/nginx-demo unchanged
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get service nginx-demo
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+nginx-demo   ClusterIP   10.96.171.29   <none>        80/TCP    3m26s
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl apply -f lab1-nginx.yaml
+deployment.apps/nginx-demo unchanged
+service/nginx-demo unchanged
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-demo-dd58d7d7d-bs2k4   1/1     Running   0          5m6s
+nginx-demo-dd58d7d7d-rp227   1/1     Running   0          5m6s
+nginx-demo-dd58d7d7d-xmzb7   1/1     Running   0          5m6s
+postgres-54b955fdfb-f2dt5    1/1     Running   0          12m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get deployments
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-demo   3/3     3            3           5m15s
+postgres     1/1     1            1           19m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get services
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    94m
+nginx-demo   ClusterIP   10.96.171.29   <none>        80/TCP     5m30s
+postgres     ClusterIP   10.96.193.59   <none>        5432/TCP   19m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-demo-dd58d7d7d-bs2k4   1/1     Running   0          5m58s
+nginx-demo-dd58d7d7d-rp227   1/1     Running   0          5m58s
+nginx-demo-dd58d7d7d-xmzb7   1/1     Running   0          5m58s
+postgres-54b955fdfb-f2dt5    1/1     Running   0          13m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl delete pod nginx-demo-dd58d7d7d-bs2k4
+pod "nginx-demo-dd58d7d7d-bs2k4" deleted from default namespace
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods                             
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-demo-dd58d7d7d-kdpvq   1/1     Running   0          6s
+nginx-demo-dd58d7d7d-rp227   1/1     Running   0          6m40s
+nginx-demo-dd58d7d7d-xmzb7   1/1     Running   0          6m40s
+postgres-54b955fdfb-f2dt5    1/1     Running   0          13m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl scale deployment nginx-demo --replicas=5
+deployment.apps/nginx-demo scaled
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl get pods                                
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-demo-dd58d7d7d-kdpvq   1/1     Running   0          62s
+nginx-demo-dd58d7d7d-mrxsr   1/1     Running   0          4s
+nginx-demo-dd58d7d7d-rp227   1/1     Running   0          7m36s
+nginx-demo-dd58d7d7d-smwkr   1/1     Running   0          4s
+nginx-demo-dd58d7d7d-xmzb7   1/1     Running   0          7m36s
+postgres-54b955fdfb-f2dt5    1/1     Running   0          14m
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % kubectl describe deployment nginx-demo
+Name:                   nginx-demo
+Namespace:              default
+CreationTimestamp:      Wed, 24 Jun 2026 12:28:07 +0530
+Labels:                 app=nginx-demo
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=nginx-demo
+Replicas:               5 desired | 5 updated | 5 total | 5 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginx-demo
+  Containers:
+   nginx:
+    Image:         nginx:latest
+    Port:          80/TCP
+    Host Port:     0/TCP
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   nginx-demo-dd58d7d7d (5/5 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  8m3s  deployment-controller  Scaled up replica set nginx-demo-dd58d7d7d from 0 to 3
+  Normal  ScalingReplicaSet  31s   deployment-controller  Scaled up replica set nginx-demo-dd58d7d7d from 3 to 5
+vaibhavgupta@FVFG905WQ05F-vaibhavgupta Day 43 June 24 % 

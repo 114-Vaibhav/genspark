@@ -1,0 +1,149 @@
+-------------------------
+01-postgres.yaml
+---------------------------
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: appdb
+            - name: POSTGRES_USER
+              value: appuser
+            - name: POSTGRES_PASSWORD
+              value: apppassword
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+      
+-----------------------------------------------------------------------------------------------------------------
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl get services
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   14h
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl apply -f 01-postgres.yaml
+deployment.apps/postgres created
+service/postgres created
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl get services
+NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1     <none>        443/TCP    14h
+postgres     ClusterIP   10.96.79.91   <none>        5432/TCP   8s
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl get deployment
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+postgres   0/1     1            0           17s
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl get pods
+NAME                        READY   STATUS              RESTARTS   AGE
+postgres-7fbcbb5d5d-rnstx   0/1     ContainerCreating   0          40s
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl get pods --watch
+NAME                        READY   STATUS              RESTARTS   AGE
+postgres-7fbcbb5d5d-rnstx   0/1     ContainerCreating   0          50s
+postgres-7fbcbb5d5d-rnstx   1/1     Running             0          53s
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl get deployment
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+postgres   1/1     1            1           95s
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl get services
+NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1     <none>        443/TCP    14h
+postgres     ClusterIP   10.96.79.91   <none>        5432/TCP   102s
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl exec -it postgres-7fbcbb5d5d-rnstx --psql -U appuser -d appdb
+error: unknown flag: --psql
+See 'kubectl exec --help' for usage.
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl exec -it postgres-54b955fdfb-tlszm -- psql -U appuser -d appdb
+psql (16.14 (Debian 16.14-1.pgdg13+1))
+Type "help" for help.
+
+appdb=# select version();
+                                                       version
+----------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+appdb=# \dt
+Did not find any relations.
+appdb=# \q
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl delete pod postgres-54b955fdfb-tlszm
+pod "postgres-7fbcbb5d5d-rnstx" deleted from default namespace
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+postgres-7fbcbb5d5d-pqhdh   1/1     Running   0          10s
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>kubectl get services
+NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1     <none>        443/TCP    14h
+postgres     ClusterIP   10.96.79.91   <none>        5432/TCP   6m57s
+
+C:\Corp\Genspark\Presidio\2026\Participants\K8>
+
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-demo
+  labels:
+    app: nginx-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-demo
+  template:
+    metadata:
+      labels:
+        app: nginx-demo
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-demo
+spec:
+  selector:
+    app: nginx-demo
+  ports:
+    - port: 80
+      targetPort: 80
