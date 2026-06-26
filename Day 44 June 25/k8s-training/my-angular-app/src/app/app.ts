@@ -1,12 +1,26 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  template: `
+    <div style="font-family: sans-serif; padding: 2rem;">
+      <h1>Kubernetes 3-Tier Demo</h1>
+      <button (click)="checkDb()">Check Database Connection</button>
+      <pre>{{ result() }}</pre>
+    </div>
+  `,
 })
 export class App {
-  protected readonly title = signal('my-angular-app');
+  result = signal('Click the button to test the API -> Postgres connection');
+
+  constructor(private http: HttpClient) {}
+
+  checkDb() {
+    this.http.get('/api/db-check').subscribe({
+      next: (res) => this.result.set(JSON.stringify(res, null, 2)),
+      error: (err) => this.result.set('Error: ' + JSON.stringify(err.message)),
+    });
+  }
 }
