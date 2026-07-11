@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vaibhavapi-deployment
+  labels:
+    app: vaibhavapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vaibhavapi
+  template:
+    metadata:
+      labels:
+        app: vaibhavapi
+    spec:
+      containers:
+        - name: vaibhavapi
+          image: __ACR_LOGIN_SERVER__/vaibhavapi:__IMAGE_TAG__
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi

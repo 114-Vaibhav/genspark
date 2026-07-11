@@ -1,0 +1,6 @@
+@VaibhavAzureApi_HostAddress = http://localhost:5153
+
+GET {{VaibhavAzureApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
